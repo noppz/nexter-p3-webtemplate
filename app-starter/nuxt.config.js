@@ -106,7 +106,22 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {
+      /*
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/,
+          options: {
+            fix: true
+          }
+        })
+      }
+      */
+      // * ? [Fixed VS code Select End of Line Sequence by change from CRLF to LF]
+    }
   },
   router: {
     // [Auth] open this comment when set authentication every pages by default
