@@ -4,12 +4,13 @@
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
+      width="240"
       fixed
       dark
       app
     >
       <v-list dense>
-        <v-list-item>
+        <v-list-item to="/" router exact>
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -82,7 +83,13 @@
         <nuxt />
       </v-container>
     </v-content>
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
+    <v-navigation-drawer
+      v-model="rightDrawer"
+      :right="right"
+      width="240"
+      temporary
+      fixed
+    >
       <v-list>
         <v-list-item @click.native="right = !right">
           <v-list-item-action>
@@ -110,6 +117,11 @@ export default {
         icon: 'mdi-apps',
         title: 'Dashboard',
         to: '/dashboard'
+      },
+      {
+        icon: 'mdi-package-variant-closed',
+        title: 'Products',
+        to: '/products'
       }
       /*
       {

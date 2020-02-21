@@ -1,3 +1,12 @@
+* {
+    font-family: Tahoma, Geneva, sans-serif;
+    letter-spacing: -0.005rem;
+}
+html,
+body {
+    
+    font-size: 16px;
+}
 .text-inherit {
     text-transform: none !important;
 }

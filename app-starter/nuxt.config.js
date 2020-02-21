@@ -27,7 +27,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['@/assets/css/main.css'],
+  css: ['@/assets/variables.scss', '@/assets/css/main.css'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -107,7 +107,6 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {
-      /*
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -119,7 +118,6 @@ export default {
           }
         })
       }
-      */
       // * ? [Fixed VS code Select End of Line Sequence by change from CRLF to LF]
     }
   },
