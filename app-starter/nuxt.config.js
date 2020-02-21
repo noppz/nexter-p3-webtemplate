@@ -27,7 +27,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['@/assets/variables.scss', '@/assets/css/main.css'],
+  css: ['@/assets/css/main.css'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -50,8 +50,12 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    scss: ['~/assets/variables.scss']
+  },
   auth: {
     // Options
     strategies: {
