@@ -1,0 +1,8 @@
+.vscode
+.nyc_output
+node_modules
+build
+coverage
+test.js
+*.tar.gz
+output
