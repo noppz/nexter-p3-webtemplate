@@ -25,11 +25,6 @@
             dense
             @page-count="pageCount = $event"
           >
-            <template v-slot:item.product_status="{ item }">
-              <v-chip :color="getColor(item.product_status)" small dark>
-                {{ getText(item.product_status) }}
-              </v-chip>
-            </template>
             <template v-slot:top>
               <v-toolbar flat color="white">
                 <v-toolbar-title>{{ modules.title }}</v-toolbar-title>
@@ -41,13 +36,98 @@
                   single-line
                   hide-details
                 ></v-text-field>
-                <v-btn
-                  class="text-inherit ml-4"
-                  color="primary"
-                  to="/products/edit"
-                >
-                  Create Product
-                </v-btn>
+                <div class="d-flex mt-2 mb-0 ml-4" style="width:160px">
+                  <v-overflow-btn
+                    :items="dropdown_icon"
+                    value="Quick Add"
+                    segmented
+                    small
+                    dark
+                    dense
+                    background-color="primary"
+                  ></v-overflow-btn>
+                </div>
+                <!-- Start Edit Dialog -->
+                <v-dialog v-model="dialog" :max-width="widthSize">
+                  <v-card>
+                    <v-card-title>
+                      <span class="headline">{{ formTitle }}</span>
+                    </v-card-title>
+                    <v-card-text class="py-0">
+                      <v-container>
+                        <v-row dense>
+                          <v-col cols="12">
+                            <v-text-field
+                              v-model="editedItem.name"
+                              label="Dessert name"
+                              outlined
+                              dense
+                              clear-icon="mdi-close-circle-outline"
+                              clearable
+                              hide-details="auto"
+                            >
+                              <v-btn
+                                slot="append"
+                                class="pa-0"
+                                small
+                                text
+                                color="primary"
+                              >
+                                ตรวจสอบ
+                              </v-btn>
+                            </v-text-field>
+                          </v-col>
+                          <v-col cols="12">
+                            <v-text-field
+                              v-model="editedItem.calories"
+                              label="Calories"
+                              outlined
+                              dense
+                              hide-details="auto"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12">
+                            <v-text-field
+                              v-model="editedItem.fat"
+                              label="Fat (g)"
+                              outlined
+                              dense
+                              hide-details="auto"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12">
+                            <v-text-field
+                              v-model="editedItem.carbs"
+                              label="Carbs (g)"
+                              outlined
+                              dense
+                              hide-details="auto"
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12">
+                            <v-text-field
+                              v-model="editedItem.protein"
+                              label="Protein (g)"
+                              outlined
+                              dense
+                              hide-details="auto"
+                            ></v-text-field>
+                          </v-col>
+                        </v-row>
+                      </v-container>
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn text @click="close">
+                        Cancel
+                      </v-btn>
+                      <v-btn color="primary" @click="save">
+                        Save
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+                <!-- END Edit DIALOG -->
                 <!-- START DELETE DIALOG -->
                 <v-dialog v-model="dialog2" :max-width="widthSize">
                   <v-card>
@@ -78,13 +158,16 @@
               </v-toolbar>
             </template>
             <template v-slot:item.action="{ item }">
-              <v-btn icon @click="updateItem(item)">
+              <v-btn icon @click="editItem(item)">
                 <v-icon small>
                   mdi-pencil
                 </v-icon>
               </v-btn>
               <v-btn icon @click="deleteItem(item)">
                 <v-icon small>mdi-delete</v-icon>
+              </v-btn>
+              <v-btn icon color="warning" @click="updateItem(item)">
+                <v-icon small>mdi-pencil-box-outline</v-icon>
               </v-btn>
             </template>
             <template v-slot:no-data>
@@ -129,119 +212,107 @@
 <script>
 const breadcrumbInfo = [
   {
-    text: 'Products',
+    text: 'Items',
     disabled: true,
-    to: '/products',
+    to: '/items',
     exact: true
   }
 ]
 const moduleInfo = {
-  title: 'รายการสินค้า',
-  subtitle: 'Products Description'
+  title: 'Items',
+  subtitle: 'Items Description'
 }
 const tableHeaders = [
   {
-    text: 'ชื่อสินค้า',
-    value: 'product_name',
+    text: 'Dessert (100g serving)',
+    value: 'name',
     sortable: false,
     align: 'left'
   },
-  { text: 'ตัวเลือกสินค้า', value: 'product_specs', align: 'center' },
-  { text: 'ราคาสินค้า', value: 'price', align: 'right' },
-  { text: 'คลัง', value: 'stock_amount', align: 'right' },
-  { text: 'ยอดขาย', value: 'sale_amount', align: 'right' },
-  { text: 'สถานะสินค้า', value: 'product_status', align: 'center' },
-  { text: 'การดำเนินการ', value: 'action', sortable: false, align: 'center' }
+  { text: 'Calories', value: 'calories', align: 'right' },
+  { text: 'Fat (g)', value: 'fat', align: 'right' },
+  { text: 'Carbs (g)', value: 'carbs', align: 'right' },
+  { text: 'Protein (g)', value: 'protein', align: 'right' },
+  { text: 'Actions', value: 'action', sortable: false, align: 'center' }
 ]
 const tableDatum = [
   {
-    product_name: 'Frozen Yogurt',
-    product_specs: 'ขาว',
-    price: 100,
-    stock_amount: 100,
-    sale_amount: '1,000',
-    product_status: 1
+    name: 'Frozen Yogurt',
+    calories: 159,
+    fat: 6.0,
+    carbs: 24,
+    protein: 4.0
   },
   {
-    product_name: 'Ice cream sandwich',
-    product_specs: 'ดำ',
-    price: 100,
-    stock_amount: 100,
-    sale_amount: '2,000',
-    product_status: 1
+    name: 'Ice cream sandwich',
+    calories: 237,
+    fat: 9.0,
+    carbs: 37,
+    protein: 4.3
   },
   {
-    product_name: 'Eclair',
-    product_specs: 'ดำ',
-    price: 200,
-    stock_amount: 0,
-    sale_amount: '1,500',
-    product_status: 0
+    name: 'Eclair',
+    calories: 262,
+    fat: 16.0,
+    carbs: 23,
+    protein: 6.0
   },
   {
-    product_name: 'Cupcake',
-    product_specs: 'ขาว',
-    price: 300,
-    stock_amount: 0,
-    sale_amount: 500,
-    product_status: 0
+    name: 'Cupcake',
+    calories: 305,
+    fat: 3.7,
+    carbs: 67,
+    protein: 4.3
   },
   {
-    product_name: 'Gingerbread',
-    product_specs: 'ขาว',
-    price: 450,
-    stock_amount: 100,
-    sale_amount: 750,
-    product_status: 1
+    name: 'Gingerbread',
+    calories: 356,
+    fat: 16.0,
+    carbs: 49,
+    protein: 3.9
   },
   {
-    product_name: 'Jelly bean',
-    product_specs: 'ดำ',
-    price: 500,
-    stock_amount: 0,
-    sale_amount: 800,
-    product_status: 0
+    name: 'Jelly bean',
+    calories: 375,
+    fat: 0.0,
+    carbs: 94,
+    protein: 0.0
   },
   {
-    product_name: 'Lollipop',
-    product_specs: 'ดำ',
-    price: 200,
-    stock_amount: '1,000',
-    sale_amount: '10,000',
-    product_status: 1
+    name: 'Lollipop',
+    calories: 392,
+    fat: 0.2,
+    carbs: 98,
+    protein: 0
   },
   {
-    product_name: 'Honeycomb',
-    product_specs: 'ดำ',
-    price: 320,
-    stock_amount: 100,
-    sale_amount: 680,
-    product_status: 1
+    name: 'Honeycomb',
+    calories: 408,
+    fat: 3.2,
+    carbs: 87,
+    protein: 6.5
   },
   {
-    product_name: 'Donut',
-    product_specs: 'ขาว',
-    price: 600,
-    stock_amount: 0,
-    sale_amount: 700,
-    product_status: 0
+    name: 'Donut',
+    calories: 452,
+    fat: 25.0,
+    carbs: 51,
+    protein: 4.9
   },
   {
-    product_name: 'KitKat',
-    product_specs: 'ขาว',
-    price: 500,
-    stock_amount: 500,
-    sale_amount: 500,
-    product_status: 1
+    name: 'KitKat',
+    calories: 518,
+    fat: 26.0,
+    carbs: 65,
+    protein: 7
   }
 ]
 const objectItem = {
-  product_name: '',
-  product_specs: '',
-  price: 0,
-  stock_amount: 0,
-  sale_amount: 0,
-  product_status: ''
+  name: '',
+  calories: 0,
+  fat: 0,
+  carbs: 0,
+  protein: 0
 }
 
 const countItems = [
@@ -259,6 +330,10 @@ export default {
       dialog: false,
       dialog2: false,
       widthSize: '480px',
+      dropdown_icon: [
+        { text: 'Quick Add', callback: () => this.createQuickItem() },
+        { text: 'New Item', callback: () => this.createItem() }
+      ],
       search: '',
       page: 1,
       pageCount: 0,
@@ -288,10 +363,13 @@ export default {
       this.itemsPerPage = item
     },
     createItem() {
-      this.$router.push('/products/edit')
+      this.$router.push('/items/edit')
+    },
+    createQuickItem() {
+      this.dialog = true
     },
     updateItem(item) {
-      this.$router.push('/products/edit')
+      this.$router.push('/items/edit')
     },
     editItem(item) {
       this.editedIndex = this.tableData.indexOf(item)
@@ -326,15 +404,6 @@ export default {
       this.tableData.splice(index, 1)
       this.deleteItemIndex = null
       this.dialog2 = false
-    },
-    getColor(val) {
-      if (val === 0) return 'red'
-      else if (val === 1) return 'green'
-    },
-    getText(val) {
-      if (val === 0) return 'สินค้าหมด'
-      else if (val === 1) return 'พร้อมขาย'
-      else return ''
     }
   }
 }

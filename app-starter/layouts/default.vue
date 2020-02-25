@@ -1,17 +1,29 @@
 <template>
   <v-app>
+    <v-snackbar v-model="snackbar" :color="snackbarColor" multi-line top right>
+      <p>
+        SNACKBAR 1<br />
+        SNACKBAR 2<br />
+        SNACKBAR 3<br />
+        SNACKBAR 4<br />
+        SNACKBAR 5
+      </p>
+      <v-btn dark small icon @click="snackbar = false">
+        <v-icon>mdi-close-circle</v-icon>
+      </v-btn>
+    </v-snackbar>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
-      width="240"
+      :width="drawerSize"
       fixed
       dark
       app
     >
       <v-list dense>
         <v-list-item to="/" router exact>
-          <v-list-item-action>
+          <v-list-item-action class="mr-2">
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
@@ -28,7 +40,7 @@
           router
           exact
         >
-          <v-list-item-action>
+          <v-list-item-action class="mr-2">
             <v-tooltip :disabled="!miniVariant" right>
               <template v-slot:activator="{ on }">
                 <v-icon v-on="on">{{ item.icon }}</v-icon>
@@ -52,7 +64,7 @@
       app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
+      <v-btn icon @click="displayMiniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
       <!--
@@ -94,7 +106,7 @@
     <v-navigation-drawer
       v-model="rightDrawer"
       :right="right"
-      width="240"
+      :width="drawerSize"
       temporary
       fixed
     >
@@ -118,52 +130,60 @@
 </template>
 
 <script>
-export default {
-  data() {
-    const menuItems = [
-      {
-        icon: 'mdi-apps',
-        title: 'Dashboard',
-        to: '/dashboard'
-      },
-      {
-        icon: 'mdi-package-variant-closed',
-        title: 'Products',
-        to: '/products'
-      }
-      /*
+import { mapGetters } from 'vuex'
+
+const menuItems = [
+  {
+    icon: 'mdi-apps',
+    title: 'Dashboard',
+    to: '/dashboard'
+  },
+  {
+    icon: 'mdi-package-variant-closed',
+    title: 'Items',
+    to: '/items'
+  },
+  {
+    icon: 'mdi-package-variant-closed',
+    title: 'รายการสินค้า',
+    to: '/products'
+  }
+  /*
       {
         icon: 'mdi-chart-bubble',
         title: 'Inspire',
         to: '/inspire'
       }
       */
-    ]
+]
 
-    const userMenuItems = [
-      {
-        icon: 'mdi-account-circle-outline',
-        title: 'Profile'
-      },
-      {
-        icon: 'mdi-shield-key-outline',
-        title: 'Change Password'
-      },
-      {
-        icon: 'mdi-logout',
-        title: 'Log out'
-      }
-    ]
+const userMenuItems = [
+  {
+    icon: 'mdi-account-circle-outline',
+    title: 'Profile'
+  },
+  {
+    icon: 'mdi-shield-key-outline',
+    title: 'Change Password'
+  },
+  {
+    icon: 'mdi-logout',
+    title: 'Log out'
+  }
+]
 
-    const userInfoItems = {
-      name: 'Account Name'
-    }
+const userInfoItems = {
+  name: 'Account Name'
+}
 
+export default {
+  data() {
     return {
       clipped: false,
       drawer: true,
       fixed: false,
       fluid: false,
+      drawerSize: '200',
       items: menuItems,
       userItems: userMenuItems,
       userInfo: userInfoItems,
@@ -171,7 +191,21 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'App Name'
+      title: 'App Name',
+      snackbar: false,
+      snackbarColor: 'primary',
+      timeout: 1000
+    }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser'])
+  },
+  methods: {
+    setUserInfo() {
+      this.userInfo.name = this.loggedInUser.username
+    },
+    displayMiniVariant() {
+      this.miniVariant = !this.miniVariant
     }
   }
 }

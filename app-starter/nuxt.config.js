@@ -1,6 +1,5 @@
 // constant color variables
 // import colors from 'vuetify/es5/util/colors'
-
 export default {
   mode: 'spa',
   /*
@@ -50,14 +49,11 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    '@nuxtjs/auth',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/auth'
   ],
-  styleResources: {
-    scss: ['~/assets/variables.scss']
-  },
   auth: {
     // Options
+    cookie: false,
     strategies: {
       local: {
         endpoints: {
@@ -68,12 +64,16 @@ export default {
             method: 'post',
             propertyName: 'data.token'
           },
+          logout: {
+            url: '/auth/logout',
+            method: 'post'
+          },
           user: {
             url: 'me',
             method: 'get',
-            propertyName: 'data'
+            propertyName: false
           },
-          logout: false
+          tokenRequired: true
         }
       }
     },
@@ -83,7 +83,12 @@ export default {
       logout: '/',
       callback: '/login',
       home: '/'
-    }
+    },
+    plugins: ['~/plugins/auth.js']
+  },
+  // [Global Authentication]
+  router: {
+    middleware: ['auth']
   },
   /*
    ** Axios module configuration
