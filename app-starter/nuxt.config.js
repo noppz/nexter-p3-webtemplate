@@ -88,6 +88,7 @@ export default {
   },
   // [Global Authentication]
   router: {
+    // [Auth] open this comment when set authentication every pages by default
     middleware: ['auth']
   },
   /*
@@ -129,9 +130,5 @@ export default {
       }
       // * ? [Fixed VS code Select End of Line Sequence by change from CRLF to LF]
     }
-  },
-  router: {
-    // [Auth] open this comment when set authentication every pages by default
-    // middleware: ['auth']
   }
 }
