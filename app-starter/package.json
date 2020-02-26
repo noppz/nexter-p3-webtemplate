@@ -1,48 +1,85 @@
 {
-  "name": "app-starter",
-  "version": "1.0.0",
-  "description": "My majestic Nuxt.js project",
-  "author": "omg-chaiwat",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
-  },
-  "lint-staged": {
-    "*.{js,vue}": "npm run lint",
-    "*.{css,vue}": "stylelint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "dependencies": {
-    "@nuxtjs/auth": "^4.8.5",
-    "@nuxtjs/axios": "^5.9.5",
-    "@nuxtjs/dotenv": "^1.4.0",
-    "nuxt": "^2.0.0",
-    "vuetify": "^2.2.14"
-  },
-  "devDependencies": {
-    "@nuxtjs/eslint-config": "^2.0.0",
-    "@nuxtjs/eslint-module": "^1.0.0",
-    "@nuxtjs/style-resources": "^1.0.0",
-    "@nuxtjs/stylelint-module": "^3.1.0",
-    "@nuxtjs/vuetify": "^1.0.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^6.1.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-nuxt": ">=0.4.2",
-    "eslint-plugin-prettier": "^3.1.2",
-    "husky": "^4.0.0",
-    "lint-staged": "^10.0.0",
-    "node-sass": "^4.13.1",
-    "prettier": "^1.19.1",
-    "sass-loader": "^8.0.2",
-    "stylelint": "^10.1.0"
-  }
+	"name": "nuxt-vuetify-dashboard",
+	"version": "1.0.0",
+	"description": "Nuxt.js + Vuetify.js project",
+	"author": "Rekryt <rekrytkw@gmail.com>",
+	"private": true,
+	"scripts": {
+		"dev": "nuxt",
+		"build": "nuxt build",
+		"start": "nuxt start",
+		"generate": "nuxt generate"
+	},
+	"dependencies": {
+		"@ckeditor/ckeditor5-build-classic": "^17.0.0",
+		"@ckeditor/ckeditor5-vue": "^1.0.1",
+		"@nuxtjs/axios": "^5.9.5",
+		"nuxt": "^2.11.0",
+		"vue-chartist": "^2.2.1",
+		"vuetify": "^2.2.14"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.8.4",
+		"@babel/preset-env": "^7.8.4",
+		"@mdi/font": "^4.9.95",
+		"@vue/eslint-config-prettier": "^6.0.0",
+		"babel-eslint": "^10.0.3",
+		"eslint": "^6.8.0",
+		"eslint-config-standard": "^14.1.0",
+		"eslint-config-vuetify": "^0.5.0",
+		"eslint-loader": "^3.0.3",
+		"eslint-plugin-html": "^6.0.0",
+		"eslint-plugin-import": "^2.20.1",
+		"eslint-plugin-node": "^11.0.0",
+		"eslint-plugin-prettier": "^3.1.2",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-standard": "^4.0.1",
+		"eslint-plugin-vue": "^6.2.1",
+		"less": "^3.11.1",
+		"less-loader": "^5.0.0",
+		"sass": "^1.25.0",
+		"sass-loader": "^8.0.2",
+		"stylus": "^0.54.7",
+		"stylus-loader": "^3.0.2"
+	},
+	"prettier": {
+		"useTabs": true,
+		"printWidth": 120,
+		"tabWidth": 4,
+		"trailingComma": "es5",
+		"jsxBracketSameLine": false,
+		"bracketSpacing": true,
+		"semi": true,
+		"singleQuote": true,
+		"htmlWhitespaceSensitivity": "ignore"
+	},
+	"eslintConfig": {
+		"root": true,
+		"env": {
+			"node": true,
+			"browser": true,
+			"es6": true
+		},
+		"extends": [
+			"plugin:vue/essential",
+			"@vue/prettier"
+		],
+		"rules": {
+			"no-console": "off",
+			"vue/multiline-html-element-content-newline": [
+				2,
+				{
+					"ignoreWhenEmpty": true,
+					"ignores": [
+						"pre",
+						"textarea"
+					],
+					"allowEmptyLines": false
+				}
+			]
+		},
+		"parserOptions": {
+			"parser": "babel-eslint"
+		}
+	}
 }
