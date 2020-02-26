@@ -32,7 +32,7 @@
         </v-list-item>
       </v-list>
       <v-divider></v-divider>
-      <v-list dense shaped>
+      <v-list dense>
         <v-list-item
           v-for="(item, i) in items"
           :key="i"

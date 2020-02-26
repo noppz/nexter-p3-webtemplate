@@ -1,5 +1,7 @@
 // constant color variables
 // import colors from 'vuetify/es5/util/colors'
+// enable custom variable.scss
+import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
 export default {
   mode: 'spa',
   /*
@@ -27,6 +29,14 @@ export default {
    ** Global CSS
    */
   css: ['@/assets/css/main.css'],
+  render: {
+    // enable render preload (including middleware script)
+    bundleRenderer: {
+      shouldPreload: (file, type) => {
+        return ['script', 'style', 'font'].includes(type)
+      }
+    }
+  },
   /*
    ** Plugins to load before mounting the App
    */
@@ -89,7 +99,7 @@ export default {
   // [Global Authentication]
   router: {
     // [Auth] open this comment when set authentication every pages by default
-    middleware: ['auth']
+    // middleware: ['auth']
   },
   /*
    ** Axios module configuration
@@ -129,6 +139,9 @@ export default {
         })
       }
       // * ? [Fixed VS code Select End of Line Sequence by change from CRLF to LF]
-    }
+    },
+    // enable custom variable.scss
+    transpile: ['vuetify/lib'],
+    plugins: [new VuetifyLoaderPlugin()]
   }
 }
