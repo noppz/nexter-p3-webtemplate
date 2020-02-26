@@ -6,3 +6,4 @@ coverage
 test.js
 *.tar.gz
 output
+.nuxt
