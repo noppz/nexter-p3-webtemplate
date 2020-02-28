@@ -34,7 +34,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~/assets/less/main.less', '@/assets/css/main.css'],
+  css: ['@/assets/css/main.css'],
   render: {
     // enable render preload (including middleware script)
     bundleRenderer: {
@@ -70,8 +70,16 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources',
     '@nuxtjs/auth'
   ],
+  styleResources: {
+    // your settings here
+    sass: [],
+    scss: ['@/assets/scss/main.scss'],
+    less: ['~/assets/less/main.less'],
+    stylus: []
+  },
   auth: {
     // Options
     cookie: false,

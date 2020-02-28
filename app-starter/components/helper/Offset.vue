@@ -34,15 +34,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.v-offset {
-  margin: 0 auto;
-  max-width: calc(100% - 32px);
-  position: relative;
-  z-index: 1;
-}
-.v-offset--full-width {
-  max-width: 100%;
-}
-</style>

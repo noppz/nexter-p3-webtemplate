@@ -2,7 +2,11 @@
   <v-container fill-height fluid>
     <v-row align="center" justify="center">
       <v-col cols="12">
-        <material-card color="green" title="Material Dashboard Heading" text="Created using Roboto Font Family">
+        <material-card
+          color="green"
+          title="Material Dashboard Heading"
+          text="Created using Roboto Font Family"
+        >
           <v-card-text>
             <h2 class="font-weight-light mb-4">
               Typography

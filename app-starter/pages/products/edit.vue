@@ -90,10 +90,22 @@
                     <v-select label="หมวดย่อย" small dense outlined hide-details="auto"></v-select>
                   </v-col>
                   <v-col cols="12">
-                    <v-select label="หมวดย่อย ลำดับที่ 2" small dense outlined hide-details="auto"></v-select>
+                    <v-select
+                      label="หมวดย่อย ลำดับที่ 2"
+                      small
+                      dense
+                      outlined
+                      hide-details="auto"
+                    ></v-select>
                   </v-col>
                   <v-col cols="12">
-                    <v-select label="หมวดย่อย ลำดับที่ 3" small dense outlined hide-details="auto"></v-select>
+                    <v-select
+                      label="หมวดย่อย ลำดับที่ 3"
+                      small
+                      dense
+                      outlined
+                      hide-details="auto"
+                    ></v-select>
                   </v-col>
                 </v-row>
               </v-container>

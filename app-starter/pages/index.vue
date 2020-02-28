@@ -2,7 +2,12 @@
   <v-container fluid>
     <v-row>
       <v-col cols="12" lg="4">
-        <material-chart-card :data="dailySalesChart.data" :options="dailySalesChart.options" color="info" type="Line">
+        <material-chart-card
+          :data="dailySalesChart.data"
+          :options="dailySalesChart.options"
+          color="info"
+          type="Line"
+        >
           <h4 class="title font-weight-light">
             Daily Sales
           </h4>
@@ -124,7 +129,11 @@
       </v-col>
 
       <v-col cols="12" lg="6">
-        <material-card color="orange" title="Employee Stats" text="New employees on 15th September, 2016">
+        <material-card
+          color="orange"
+          title="Employee Stats"
+          text="New employees on 15th September, 2016"
+        >
           <v-data-table :headers="headers" :items="items" hide-default-footer />
         </material-card>
       </v-col>
@@ -238,8 +247,8 @@
                   </v-list-item-action>
 
                   <v-list-item-title>
-                    Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept
-                    through metro Detroit
+                    Flooded: One year later, assessing what was lost and what was found when a
+                    ravaging rain swept through metro Detroit
                   </v-list-item-title>
 
                   <div class="d-flex">

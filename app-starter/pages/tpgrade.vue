@@ -79,7 +79,13 @@
               <tr>
                 <th />
                 <td>
-                  <v-btn class="subheading white--text font-weight-light" rounded large color="grey" disabled>
+                  <v-btn
+                    class="subheading white--text font-weight-light"
+                    rounded
+                    large
+                    color="grey"
+                    disabled
+                  >
                     Current Version
                   </v-btn>
                 </td>

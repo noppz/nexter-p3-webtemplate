@@ -13,7 +13,7 @@
       <v-row align="center" class="mx-0">
         <v-text-field class="mr-4 purple-input" color="purple" label="Search..." hide-details />
 
-        <v-btn icon to="/">
+        <v-btn class="mx-1" icon to="/">
           <v-icon color="tertiary">
             mdi-view-dashboard
           </v-icon>
@@ -21,13 +21,13 @@
 
         <v-menu bottom left offset-y transition="slide-y-transition">
           <template v-slot:activator="{ attrs, on }">
-            <v-btn class="toolbar-items" icon to="/notifications" v-bind="attrs" v-on="on">
+            <v-btn class="toolbar-items mx-1" icon to="/notifications" v-bind="attrs" v-on="on">
               <v-badge color="error" overlap>
                 <template slot="badge">
                   {{ notifications.length }}
                 </template>
                 <v-icon color="tertiary">
-                  mdi-bell
+                  mdi-email-variant
                 </v-icon>
               </v-badge>
             </v-btn>
@@ -35,14 +35,29 @@
 
           <v-card>
             <v-list dense>
-              <v-list-item v-for="notification in notifications" :key="notification" @click="onClick">
+              <v-list-item
+                v-for="notification in notifications"
+                :key="notification"
+                @click="onClick"
+              >
                 <v-list-item-title v-text="notification" />
               </v-list-item>
             </v-list>
           </v-card>
         </v-menu>
 
-        <v-btn to="/user-profile" icon>
+        <v-btn class="mx-1" icon>
+          <v-badge color="error" overlap>
+            <template slot="badge">
+              &gt;99
+            </template>
+            <v-icon color="tertiary">
+              mdi-file-document-box
+            </v-icon>
+          </v-badge>
+        </v-btn>
+
+        <v-btn to="/user-profile" class="mx-1" icon>
           <v-icon color="tertiary">
             mdi-account
           </v-icon>
@@ -95,14 +110,3 @@ export default {
   }
 }
 </script>
-
-<style>
-/* Fix coming in v2.0.8 */
-#core-app-bar {
-  width: auto;
-}
-
-#core-app-bar a {
-  text-decoration: none;
-}
-</style>
