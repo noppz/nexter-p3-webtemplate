@@ -39,4 +39,25 @@ db.user.belongsToMany(db.role, {
 
 db.ROLES = ['user', 'admin', 'moderator'];
 
+db.product = require('../models/product.model.js')(sequelize, Sequelize);
+db.productCategory = require('../models/productCategory.model.js')(sequelize, Sequelize);
+db.productSubcategory = require('../models/productSubcategory.model.js')(sequelize, Sequelize);
+db.productClass = require('../models/productClass.model.js')(sequelize, Sequelize);
+db.productSubclass = require('../models/productSubclass.model.js')(sequelize, Sequelize);
+
+db.productClass.hasMany(db.productSubclass);
+db.productSubcategory.hasMany(db.productClass);
+db.productCategory.hasMany(db.productSubcategory);
+
+db.product.belongsTo(db.productSubclass);
+db.product.belongsTo(db.productClass);
+db.product.belongsTo(db.productSubcategory);
+db.product.belongsTo(db.productCategory);
+
+db.productSubclass.belongsTo(db.productClass);
+db.productClass.belongsTo(db.productSubcategory);
+db.productSubcategory.belongsTo(db.productCategory);
+
+
+
 module.exports = db;

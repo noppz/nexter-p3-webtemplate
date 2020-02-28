@@ -1,42 +1,44 @@
 <template>
-	<ckeditor :editor="editor" v-model="data" :config="config"></ckeditor>
+  <ckeditor v-model="data" :editor="editor" :config="config"></ckeditor>
 </template>
 <script>
-//import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-let ClassicEditor;
+let ClassicEditor
 if (process.client) {
-	ClassicEditor = require('@ckeditor/ckeditor5-build-classic');
+  ClassicEditor = require('@ckeditor/ckeditor5-build-classic')
 }
 
 export default {
-	props: {
-		value: {
-			default: '',
-		},
-		config: {
-			// The configuration of the editor.
-		},
-	},
-	computed: {
-		data: {
-			set(value) {
-				this.editorData = value;
-				this.$emit('input', value);
-			},
-			get() {
-				return this.editorData;
-			},
-		},
-	},
-	data() {
-		return {
-			editor: ClassicEditor,
-			editorData: '',
-		};
-	},
-	created() {
-		this.editorData = this.value;
-	},
-};
+  props: {
+    value: {
+      type: String,
+      default: ''
+    },
+    config: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  data() {
+    return {
+      editor: ClassicEditor,
+      editorData: ''
+    }
+  },
+  computed: {
+    data: {
+      set(value) {
+        this.editorData = value
+        this.$emit('input', value)
+      },
+      get() {
+        return this.editorData
+      }
+    }
+  },
+  created() {
+    this.editorData = this.value
+  }
+}
 </script>

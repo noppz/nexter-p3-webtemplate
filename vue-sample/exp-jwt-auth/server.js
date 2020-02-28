@@ -17,10 +17,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = require('./app/models');
-const Role = db.role;
+// const Role = db.role;
+const Product = db.product;
 
+// force = true Existing Table will drop and resync
 db.sequelize.sync({ force: false }).then(() => {
-  // console.log('Drop and Resync Db'); // force = true Existing Table will drop and resync
+  // console.log('Drop and Resync Db'); 
   initial();
 });
 
