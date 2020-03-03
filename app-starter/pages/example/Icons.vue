@@ -46,6 +46,7 @@
 
 <script>
 export default {
+  layout: 'example',
   data: () => ({
     icons: [
       'mdi-access-point',

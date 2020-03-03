@@ -56,6 +56,7 @@ const material = 'The Life of Material Dashboard'
 const small = 'Header with small subtitle'
 
 export default {
+  layout: 'example',
   data: () => ({
     typography: {
       'heading-1': ['Header 1', material, 'h1'],

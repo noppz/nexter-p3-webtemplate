@@ -161,6 +161,7 @@
 
 <script>
 export default {
+  layout: 'example',
   data: () => ({
     color: null,
     colors: ['purple', 'info', 'success', 'warning', 'error'],

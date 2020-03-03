@@ -110,3 +110,9 @@
     </v-row>
   </v-container>
 </template>
+
+<script>
+export default {
+  layout: 'example'
+}
+</script>
