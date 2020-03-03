@@ -46,6 +46,7 @@
 <script>
 export default {
   layout: 'simple',
+  auth: false,
   data() {
     return {
       username: '',
@@ -57,14 +58,18 @@ export default {
     async submit() {
       try {
         if (this.username.length > 0 && this.password.length > 0) {
-          await this.$auth.loginWith('local', {
-            data: {
-              username: this.username,
-              password: this.password
-            }
-          })
+          await this.$auth
+            .loginWith('local', {
+              data: {
+                username: this.username,
+                password: this.password
+              }
+            })
+            .then(() => {
+              console.log('success')
+              this.$router.push('/dashboard')
+            })
         }
-        this.$router.push('/dashboard')
       } catch (e) {
         this.message = e.response.data.message
       }

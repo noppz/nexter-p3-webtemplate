@@ -81,21 +81,19 @@
       </v-list-group>
     </v-list-group>
 
-    <!--
-		<template v-slot:append>
-			<v-list nav>
-				<v-list-item to="#">
-					<v-list-item-action>
-						<v-icon>mdi-package-up</v-icon>
-					</v-list-item-action>
+    <template v-slot:append>
+      <v-list nav>
+        <v-list-item to="#">
+          <v-list-item-action>
+            <v-icon>mdi-package-up</v-icon>
+          </v-list-item-action>
 
-					<v-list-item-title class="font-weight-light">
-						Something else
-					</v-list-item-title>
-				</v-list-item>
-			</v-list>
-		</template>
-		-->
+          <v-list-item-title class="caption">
+            Something else
+          </v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </template>
   </v-navigation-drawer>
 </template>
 

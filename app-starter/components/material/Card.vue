@@ -54,8 +54,7 @@ export default {
     },
     offset: {
       type: [Number, String],
-      // default 24
-      default: 12
+      default: 24
     },
     title: {
       type: String,
@@ -76,7 +75,8 @@ export default {
 
       return {
         marginBottom: `${this.offset}px`,
-        marginTop: `${this.offset * 2}px`
+        // marginTop: `${this.offset * 2}px`
+        marginTop: `${this.offset}px`
       }
     }
   }

@@ -91,7 +91,7 @@ export default {
           login: {
             url: '/auth/signin',
             method: 'post',
-            propertyName: 'data.token'
+            propertyName: 'data.accessToken'
           },
           logout: {
             url: '/auth/logout',
@@ -118,7 +118,7 @@ export default {
   // [Global Authentication]
   router: {
     // [Auth] open this comment when set authentication every pages by default
-    // middleware: ['auth']
+    middleware: ['auth']
   },
   /*
    ** Axios module configuration

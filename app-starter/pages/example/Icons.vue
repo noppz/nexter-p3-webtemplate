@@ -1,7 +1,7 @@
 <template>
-  <v-container fill-height fluid>
+  <v-container fill-height fluid class="py-0">
     <v-row>
-      <v-col cols="12">
+      <v-col cols="12" class="py-0">
         <material-card color="green">
           <template v-slot:header>
             <div class="px-3">

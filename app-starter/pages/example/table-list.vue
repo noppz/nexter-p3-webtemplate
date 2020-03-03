@@ -1,7 +1,7 @@
 <template>
-  <v-container fill-height fluid grid-list-xl>
+  <v-container fill-height fluid grid-list-xl class="py-0">
     <v-row justify="center">
-      <v-col cols="12">
+      <v-col cols="12" class="py-0">
         <material-card color="green" title="Simple Table" text="Here is a subtitle for this table">
           <v-data-table :headers="headers" :items="items" hide-default-footer />
         </material-card>

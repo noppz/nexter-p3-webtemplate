@@ -1,7 +1,7 @@
 <template>
-  <v-container fill-height fluid>
+  <v-container fill-height fluid class="py-0">
     <v-row align="center" justify="center">
-      <v-col cols="12">
+      <v-col cols="12" class="py-0">
         <material-card
           color="green"
           title="Material Dashboard Heading"

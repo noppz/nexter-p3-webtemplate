@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="py-0">
     <v-row>
-      <v-col cols="12" lg="4">
+      <v-col cols="12" lg="4" class="py-0">
         <material-chart-card
           :data="dailySalesChart.data"
           :options="dailySalesChart.options"
@@ -30,7 +30,7 @@
           </template>
         </material-chart-card>
       </v-col>
-      <v-col cols="12" lg="4">
+      <v-col cols="12" lg="4" class="py-0">
         <material-chart-card
           :data="emailsSubscriptionChart.data"
           :options="emailsSubscriptionChart.options"
@@ -56,7 +56,7 @@
         </material-chart-card>
       </v-col>
 
-      <v-col cols="12" lg="4">
+      <v-col cols="12" lg="4" class="py-0">
         <material-chart-card
           :data="dataCompletedTasksChart.data"
           :options="dataCompletedTasksChart.options"
@@ -81,7 +81,7 @@
         </material-chart-card>
       </v-col>
 
-      <v-col cols="12" sm="6" lg="3">
+      <v-col cols="12" sm="6" lg="3" class="py-0">
         <material-stats-card
           color="green"
           icon="mdi-store"
@@ -92,7 +92,7 @@
         />
       </v-col>
 
-      <v-col cols="12" sm="6" lg="3">
+      <v-col cols="12" sm="6" lg="3" class="py-0">
         <material-stats-card
           color="orange"
           icon="mdi-content-copy"
@@ -106,7 +106,7 @@
         />
       </v-col>
 
-      <v-col cols="12" sm="6" lg="3">
+      <v-col cols="12" sm="6" lg="3" class="py-0">
         <material-stats-card
           color="red"
           icon="mdi-information-outline"
@@ -117,7 +117,7 @@
         />
       </v-col>
 
-      <v-col cols="12" sm="6" lg="3">
+      <v-col cols="12" sm="6" lg="3" class="py-0">
         <material-stats-card
           color="info"
           icon="mdi-twitter"
@@ -128,7 +128,7 @@
         />
       </v-col>
 
-      <v-col cols="12" lg="6">
+      <v-col cols="12" lg="6" class="py-0">
         <material-card
           color="orange"
           title="Employee Stats"
@@ -138,7 +138,7 @@
         </material-card>
       </v-col>
 
-      <v-col cols="12" lg="6">
+      <v-col cols="12" lg="6" class="py-0">
         <material-card class="card-tabs" color="green">
           <template v-slot:header>
             <v-tabs v-model="tabs" background-color="transparent" slider-color="white">
@@ -168,7 +168,7 @@
 
           <v-tabs-items v-model="tabs">
             <v-tab-item v-for="n in 3" :key="n">
-              <v-list three-line class="py-0">
+              <v-list dense class="py-0">
                 <v-list-item @click="complete(0)">
                   <v-list-item-action class="align-self-center">
                     <v-checkbox :value="list[0]" color="green" />
