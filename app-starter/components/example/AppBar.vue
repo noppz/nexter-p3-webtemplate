@@ -35,11 +35,7 @@
 
           <v-card>
             <v-list dense>
-              <v-list-item
-                v-for="notification in notifications"
-                :key="notification"
-                @click="onClick"
-              >
+              <v-list-item v-for="notification in notifications" :key="notification">
                 <v-list-item-title v-text="notification" />
               </v-list-item>
             </v-list>
@@ -62,11 +58,7 @@
 
           <v-card>
             <v-list dense>
-              <v-list-item
-                v-for="notification in notifications"
-                :key="notification"
-                @click="onClick"
-              >
+              <v-list-item v-for="notification in notifications" :key="notification">
                 <v-list-item-title v-text="notification" />
               </v-list-item>
             </v-list>
@@ -84,11 +76,7 @@
 
           <v-card>
             <v-list dense>
-              <v-list-item
-                v-for="notification in notifications"
-                :key="notification"
-                @click="onClick"
-              >
+              <v-list-item v-for="notification in notifications" :key="notification">
                 <v-list-item-title v-text="notification" />
               </v-list-item>
             </v-list>
@@ -130,7 +118,7 @@ export default {
   },
   methods: {
     ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
-    onClick() {
+    toggleDrawer() {
       this.setDrawer(!this.$store.state.app.drawer)
     },
     onResponsiveInverted() {

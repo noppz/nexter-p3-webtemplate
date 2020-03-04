@@ -57,6 +57,7 @@ const small = 'Header with small subtitle'
 
 export default {
   layout: 'example',
+  auth: 'guest',
   data: () => ({
     typography: {
       'heading-1': ['Header 1', material, 'h1'],

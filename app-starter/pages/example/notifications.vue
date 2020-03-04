@@ -162,6 +162,7 @@
 <script>
 export default {
   layout: 'example',
+  auth: 'guest',
   data: () => ({
     color: null,
     colors: ['purple', 'info', 'success', 'warning', 'error'],

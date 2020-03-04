@@ -1,5 +1,5 @@
 <template>
-  <v-footer id="core-footer" height="82">
+  <v-footer id="core-footer" style="font-size: 0.75rem;">
     <div class="footer-items">
       <span v-for="link in links" :key="link.name">
         <a :href="link.Link" class="tertiary--text footer-links">

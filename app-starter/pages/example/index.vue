@@ -293,6 +293,7 @@ import Editor from '@/components/helper/Editor.vue'
 
 export default {
   layout: 'example',
+  auth: 'guest',
   components: { Editor },
   data() {
     return {

@@ -146,8 +146,9 @@ export default {
       }
     },
     async logout() {
-      this.$toast.show('Logging out...', { icon: 'fingerprint' })
+      // this.$toast.show('Logging out...', { icon: 'fingerprint' })
       await this.$auth.logout()
+      this.$router.push('/login')
     }
   }
 }

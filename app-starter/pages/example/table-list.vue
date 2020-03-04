@@ -25,6 +25,7 @@
 <script>
 export default {
   layout: 'example',
+  auth: 'guest',
   data: () => ({
     headers: [
       {

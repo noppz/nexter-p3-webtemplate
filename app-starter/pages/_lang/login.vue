@@ -1,9 +1,9 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-container style="min-width: 320px;">
+  <v-layout>
+    <v-container style="min-width: 320px;" class="mb-2">
       <v-row align="center" justify="center">
         <v-col cols="12" xs="12" sm="6" lg="4">
-          <material-card color="primary" class="text-center">
+          <material-card color="blue" class="text-center">
             <template v-slot:header>
               <div class="px-3 mx-auto">
                 <div class="title mb-2">
@@ -28,9 +28,6 @@
                   prepend-icon="mdi-account"
                   type="text"
                   :rules="[rules.required]"
-                  outlined
-                  dense
-                  hide-details="auto"
                 />
                 <div class="my-2"></div>
                 <v-text-field
@@ -40,14 +37,11 @@
                   prepend-icon="mdi-lock"
                   type="password"
                   :rules="[rules.required]"
-                  outlined
-                  dense
-                  hide-details="auto"
                 />
               </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-btn block color="primary" @click="login">{{ $t('login.login') }}</v-btn>
+              <v-btn block dark color="blue" @click="login">{{ $t('login.login') }}</v-btn>
             </v-card-actions>
           </material-card>
           <!-- -->
@@ -72,14 +66,16 @@ export default {
   },
   methods: {
     async login() {
-      this.$toast.show('Logging in...', { icon: 'fingerprint' })
-      await this.$auth.loginWith('local', {
-        data: {
-          username: this.username,
-          password: this.password
-        }
-      })
-      // this.$router.replace('/dashboard')
+      await this.$auth
+        .loginWith('local', {
+          data: {
+            username: this.username,
+            password: this.password
+          }
+        })
+        .then(() => this.$toast.success('Log in Success', { icon: 'fingerprint' }))
+        .error((e) => this.$toast.error('Log in Failed', { icon: 'fingerprint' }))
+      // this.$router.replace('/')
     }
   }
 }

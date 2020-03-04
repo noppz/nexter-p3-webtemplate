@@ -118,7 +118,7 @@ export default {
     redirect: {
       login: '/login',
       logout: '/login',
-      callback: '/login', // ถ้าใช้ provider
+      callback: '/', // ถ้าใช้ provider
       home: '/'
     }
   },
@@ -172,8 +172,6 @@ export default {
     },
     // enable custom variable.scss
     transpile: ['vuetify/lib'],
-    plugins: [new VuetifyLoaderPlugin()],
-    // enable i18n
-    vendor: ['vue-i18n']
+    plugins: [new VuetifyLoaderPlugin()]
   }
 }

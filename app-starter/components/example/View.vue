@@ -1,20 +1,15 @@
 <template>
   <v-content class="grey lighten-3">
-    <div id="core-view">
-      <v-fade-transition mode="out-in">
-        <nuxt></nuxt>
-      </v-fade-transition>
-    </div>
+    <v-fade-transition mode="out-in">
+      <v-container id="core-view" fluid class="pa-0">
+        <nuxt />
+      </v-container>
+    </v-fade-transition>
   </v-content>
 </template>
 
 <script>
 export default {
-  name: 'CoreView',
-  metaInfo() {
-    return {
-      title: 'Vue Material Dashboard by CreativeTim'
-    }
-  }
+  name: 'CoreView'
 }
 </script>

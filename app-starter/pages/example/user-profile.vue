@@ -93,6 +93,7 @@
 
 <script>
 export default {
-  layout: 'example'
+  layout: 'example',
+  auth: 'guest'
 }
 </script>

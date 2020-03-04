@@ -42,7 +42,8 @@ export default {
     },
     elevation: {
       type: [Number, String],
-      default: 10
+      default: 8
+      // default: 10
     },
     inline: {
       type: Boolean,

@@ -1,7 +1,7 @@
 <template>
   <v-content class="grey lighten-3">
     <h1>{{ error.statusCode + ' ' + error.statusMessage }}</h1>
-    <NuxtLink to="/">
+    <NuxtLink to="/login">
       Home page
     </NuxtLink>
   </v-content>
@@ -9,7 +9,8 @@
 
 <script>
 export default {
-  layout: 'empty',
+  layout: 'simple',
+  auth: 'guest',
   props: {
     error: {
       type: Object,
