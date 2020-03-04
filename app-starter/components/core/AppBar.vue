@@ -93,6 +93,9 @@
               >
                 <v-list-item-title v-text="notification" />
               </v-list-item>
+              <v-list-item @click="logout">
+                <v-list-item-title>Log out</v-list-item-title>
+              </v-list-item>
             </v-list>
           </v-card>
         </v-menu>
@@ -133,7 +136,7 @@ export default {
   methods: {
     ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
     onClick() {
-      this.setDrawer(!this.$store.state.app.drawer)
+      // this.setDrawer(!this.$store.state.app.drawer)
     },
     onResponsiveInverted() {
       if (window.innerWidth < 991) {
@@ -141,6 +144,10 @@ export default {
       } else {
         this.responsive = false
       }
+    },
+    async logout() {
+      this.$toast.show('Logging out...', { icon: 'fingerprint' })
+      await this.$auth.logout()
     }
   }
 }

@@ -4,6 +4,10 @@
 import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
 export default {
   mode: 'spa',
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    buildLocale: process.env.BUILD_LOCALE || 'th'
+  },
   /*
    ** Headers of the page
    */
@@ -30,7 +34,12 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#3B8070' },
+  loading: {
+    name: 'chasing-dots',
+    color: '#ff5638',
+    background: 'white',
+    height: '4px'
+  },
   /*
    ** Global CSS
    */
@@ -50,7 +59,9 @@ export default {
     '~/plugins/base.js',
     '~/plugins/chartist.js',
     '~/plugins/components.js',
-    { src: '~/plugins/ckeditor.js', mode: 'client' }
+    { src: '~/plugins/ckeditor.js', mode: 'client' },
+    '~/plugins/auth.js',
+    '~/plugins/i18n.js'
   ],
   /*
    ** Nuxt.js dev-modules
@@ -71,6 +82,7 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     '@nuxtjs/style-resources',
+    '@nuxtjs/toast',
     '@nuxtjs/auth'
   ],
   styleResources: {
@@ -79,6 +91,10 @@ export default {
     scss: ['@/assets/scss/main.scss'],
     less: ['~/assets/less/main.less'],
     stylus: []
+  },
+  toast: {
+    position: 'top-right',
+    duration: 2000
   },
   auth: {
     // Options
@@ -93,32 +109,24 @@ export default {
             method: 'post',
             propertyName: 'data.accessToken'
           },
-          logout: {
-            url: '/auth/logout',
-            method: 'post'
-          },
-          user: {
-            url: 'me',
-            method: 'get',
-            propertyName: false
-          },
-          tokenRequired: true
+          logout: false,
+          user: false
+          // user: { url: '/test/all', method: 'get' }
         }
       }
     },
-    // [Auth] redirect by default
     redirect: {
       login: '/login',
-      logout: '/',
-      callback: '/login',
+      logout: '/login',
+      callback: '/login', // ถ้าใช้ provider
       home: '/'
-    },
-    plugins: ['~/plugins/auth.js']
+    }
   },
-  // [Global Authentication]
   router: {
-    // [Auth] open this comment when set authentication every pages by default
-    middleware: ['auth']
+    middleware: ['auth', 'i18n']
+  },
+  generate: {
+    routes: ['/', '/en', '/login', '/en/login']
   },
   /*
    ** Axios module configuration
@@ -164,6 +172,8 @@ export default {
     },
     // enable custom variable.scss
     transpile: ['vuetify/lib'],
-    plugins: [new VuetifyLoaderPlugin()]
+    plugins: [new VuetifyLoaderPlugin()],
+    // enable i18n
+    vendor: ['vue-i18n']
   }
 }

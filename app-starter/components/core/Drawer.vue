@@ -21,7 +21,7 @@
       </v-list-item-avatar>
 
       <v-list-item-title class="title">
-        VUETIFY MD
+        Digital Partner System
       </v-list-item-title>
     </v-list-item>
 
@@ -76,7 +76,7 @@ export default {
   data: () => ({
     links: [
       {
-        to: '/dashboard',
+        to: '/',
         icon: 'mdi-view-dashboard',
         text: 'Dashboard'
       }

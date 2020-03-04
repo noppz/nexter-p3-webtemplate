@@ -31,6 +31,7 @@
 
 <script>
 export default {
+  name: 'Dashboard',
   data: () => ({
     color: null,
     colors: ['purple', 'info', 'success', 'warning', 'error'],
