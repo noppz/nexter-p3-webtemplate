@@ -17,6 +17,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  layout: 'example'
+}
+</script>
+
 <style>
 .mapouter {
   text-align: right;
