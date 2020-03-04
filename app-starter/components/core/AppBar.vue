@@ -11,9 +11,11 @@
 
     <v-toolbar-items>
       <v-row align="center" class="mx-0">
+        <!--
         <v-text-field class="mr-4 purple-input" color="purple" label="Search..." hide-details />
+        -->
 
-        <v-btn icon to="/">
+        <v-btn class="mx-1" icon to="/">
           <v-icon color="tertiary">
             mdi-view-dashboard
           </v-icon>
@@ -21,13 +23,13 @@
 
         <v-menu bottom left offset-y transition="slide-y-transition">
           <template v-slot:activator="{ attrs, on }">
-            <v-btn class="toolbar-items" icon to="/notifications" v-bind="attrs" v-on="on">
+            <v-btn class="toolbar-items mx-1" icon v-bind="attrs" v-on="on">
               <v-badge color="error" overlap>
                 <template slot="badge">
                   {{ notifications.length }}
                 </template>
                 <v-icon color="tertiary">
-                  mdi-bell
+                  mdi-email-variant
                 </v-icon>
               </v-badge>
             </v-btn>
@@ -35,18 +37,69 @@
 
           <v-card>
             <v-list dense>
-              <v-list-item v-for="notification in notifications" :key="notification" @click="onClick">
+              <v-list-item
+                v-for="notification in notifications"
+                :key="notification"
+                @click="onClick"
+              >
                 <v-list-item-title v-text="notification" />
               </v-list-item>
             </v-list>
           </v-card>
         </v-menu>
 
-        <v-btn to="/user-profile" icon>
-          <v-icon color="tertiary">
-            mdi-account
-          </v-icon>
-        </v-btn>
+        <v-menu bottom left offset-y transition="slide-y-transition">
+          <template v-slot:activator="{ attrs, on }">
+            <v-btn class="toolbar-items mx-1" icon v-bind="attrs" v-on="on">
+              <v-badge color="error" overlap>
+                <template slot="badge">
+                  &gt;99
+                </template>
+                <v-icon color="tertiary">
+                  mdi-file-document-box
+                </v-icon>
+              </v-badge>
+            </v-btn>
+          </template>
+
+          <v-card>
+            <v-list dense>
+              <v-list-item
+                v-for="notification in notifications"
+                :key="notification"
+                @click="onClick"
+              >
+                <v-list-item-title v-text="notification" />
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </v-menu>
+
+        <v-menu bottom left offset-y transition="slide-y-transition">
+          <template v-slot:activator="{ attrs, on }">
+            <v-btn class="toolbar-items mx-1" icon v-bind="attrs" v-on="on">
+              <v-icon color="tertiary">
+                mdi-account
+              </v-icon>
+            </v-btn>
+          </template>
+
+          <v-card>
+            <v-list dense>
+              <v-list-item
+                v-for="notification in notifications"
+                :key="notification"
+                @click="onClick"
+              >
+                <v-list-item-title v-text="notification" />
+              </v-list-item>
+              <v-list-item @click="logout">
+                <v-list-item-title>Log out</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </v-menu>
+        <!-- -->
       </v-row>
     </v-toolbar-items>
   </v-app-bar>
@@ -83,7 +136,7 @@ export default {
   methods: {
     ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
     onClick() {
-      this.setDrawer(!this.$store.state.app.drawer)
+      // this.setDrawer(!this.$store.state.app.drawer)
     },
     onResponsiveInverted() {
       if (window.innerWidth < 991) {
@@ -91,18 +144,11 @@ export default {
       } else {
         this.responsive = false
       }
+    },
+    async logout() {
+      this.$toast.show('Logging out...', { icon: 'fingerprint' })
+      await this.$auth.logout()
     }
   }
 }
 </script>
-
-<style>
-/* Fix coming in v2.0.8 */
-#core-app-bar {
-  width: auto;
-}
-
-#core-app-bar a {
-  text-decoration: none;
-}
-</style>

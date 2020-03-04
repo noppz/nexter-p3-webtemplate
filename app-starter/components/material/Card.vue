@@ -22,9 +22,7 @@
     <v-card-text>
       <slot />
     </v-card-text>
-
-    <v-divider v-if="$slots.actions" class="mx-3" />
-
+    <!-- <v-divider v-if="$slots.actions" class="mx-3" /> -->
     <v-card-actions v-if="$slots.actions">
       <slot name="actions" />
     </v-card-actions>
@@ -60,11 +58,11 @@ export default {
     },
     title: {
       type: String,
-      default: undefined
+      default: ''
     },
     text: {
       type: String,
-      default: undefined
+      default: ''
     }
   },
 
@@ -77,7 +75,8 @@ export default {
 
       return {
         marginBottom: `${this.offset}px`,
-        marginTop: `${this.offset * 2}px`
+        // marginTop: `${this.offset * 2}px`
+        marginTop: `${this.offset}px`
       }
     }
   }

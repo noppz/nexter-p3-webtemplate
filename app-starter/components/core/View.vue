@@ -11,7 +11,6 @@
 <script>
 export default {
   name: 'CoreView',
-
   metaInfo() {
     return {
       title: 'Vue Material Dashboard by CreativeTim'

@@ -1,7 +1,7 @@
 <template>
-  <v-container fill-height fluid>
+  <v-container fill-height fluid class="py-0">
     <v-row align="center" justify="center">
-      <v-col cols="12">
+      <v-col cols="12" class="py-0">
         <material-card color="green" title="Material Dashboard Heading" text="Created using Roboto Font Family">
           <v-card-text>
             <h2 class="font-weight-light mb-4">
@@ -52,6 +52,7 @@ const material = 'The Life of Material Dashboard'
 const small = 'Header with small subtitle'
 
 export default {
+  layout: 'example',
   data: () => ({
     typography: {
       'heading-1': ['Header 1', material, 'h1'],

@@ -31,7 +31,13 @@
       <!-- Bug in Vuetify for first child of v-list not receiving proper border-radius -->
       <div />
 
-      <v-list-item v-for="(link, i) in links" :key="i" :to="link.to" exact active-class="primary white--text">
+      <v-list-item
+        v-for="(link, i) in links"
+        :key="i"
+        :to="link.to"
+        exact
+        active-class="primary white--text"
+      >
         <v-list-item-action>
           <v-icon>{{ link.icon }}</v-icon>
         </v-list-item-action>

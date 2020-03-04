@@ -1,25 +1,29 @@
 html,
 body {
-    font-size: 16px;
+  font-size: 16px;
 }
 .text-inherit {
-    text-transform: none !important;
+  text-transform: none !important;
+}
+/* AppBar */
+#core-app-bar {
+  width: auto;
+}
+#core-app-bar a {
+  text-decoration: none;
+}
+/* Footer */
+#core-footer {
+  z-index: 0;
 }
 
-/* custom scroll-bar */
-/* width */
-::-webkit-scrollbar {
-	width: 2px;
+/* helper/Offset */
+.v-offset {
+  margin: 0 auto;
+  max-width: calc(100% - 32px);
+  position: relative;
+  z-index: 1;
 }
-/* Track */
-::-webkit-scrollbar-track {
-	background: #f1f1f1;
-}
-/* Handle */
-::-webkit-scrollbar-thumb {
-	background: #888;
-}
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-	background: #555;
+.v-offset--full-width {
+  max-width: 100%;
 }

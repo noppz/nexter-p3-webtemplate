@@ -21,17 +21,23 @@
       </v-list-item-avatar>
 
       <v-list-item-title class="title">
-        VUETIFY MD
+        Digital Partner System
       </v-list-item-title>
     </v-list-item>
 
     <v-divider class="mx-3 mb-3" />
 
-    <v-list nav>
+    <v-list nav dense>
       <!-- Bug in Vuetify for first child of v-list not receiving proper border-radius -->
       <div />
 
-      <v-list-item v-for="(link, i) in links" :key="i" :to="link.to" active-class="primary white--text">
+      <v-list-item
+        v-for="(link, i) in links"
+        :key="i"
+        :to="link.to"
+        exact
+        active-class="primary white--text"
+      >
         <v-list-item-action>
           <v-icon>{{ link.icon }}</v-icon>
         </v-list-item-action>
@@ -40,21 +46,19 @@
       </v-list-item>
     </v-list>
 
-    <!--
-		<template v-slot:append>
-			<v-list nav>
-				<v-list-item to="#">
-					<v-list-item-action>
-						<v-icon>mdi-package-up</v-icon>
-					</v-list-item-action>
+    <template v-slot:append>
+      <v-list nav>
+        <v-list-item to="#">
+          <v-list-item-action>
+            <v-icon>mdi-package-up</v-icon>
+          </v-list-item-action>
 
-					<v-list-item-title class="font-weight-light">
-						Something else
-					</v-list-item-title>
-				</v-list-item>
-			</v-list>
-		</template>
-		-->
+          <v-list-item-title class="caption">
+            Something else
+          </v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </template>
   </v-navigation-drawer>
 </template>
 
@@ -75,72 +79,6 @@ export default {
         to: '/',
         icon: 'mdi-view-dashboard',
         text: 'Dashboard'
-      },
-      {
-        to: '/user-profile',
-        icon: 'mdi-account',
-        text: 'User Profile'
-      },
-      {
-        to: '/table-list',
-        icon: 'mdi-clipboard-outline',
-        text: 'Table List'
-      },
-      {
-        to: '/typography',
-        icon: 'mdi-format-font',
-        text: 'Typography'
-      },
-      {
-        to: '/icons',
-        icon: 'mdi-chart-bubble',
-        text: 'Icons'
-      },
-      {
-        to: '/maps',
-        icon: 'mdi-map-marker',
-        text: 'Maps'
-      },
-      {
-        to: '/notifications',
-        icon: 'mdi-bell',
-        text: 'Notifications'
-      },
-      // test menu overflow
-      {
-        to: '/',
-        icon: 'mdi-view-dashboard',
-        text: 'Dashboard'
-      },
-      {
-        to: '/user-profile',
-        icon: 'mdi-account',
-        text: 'User Profile'
-      },
-      {
-        to: '/table-list',
-        icon: 'mdi-clipboard-outline',
-        text: 'Table List'
-      },
-      {
-        to: '/typography',
-        icon: 'mdi-format-font',
-        text: 'Typography'
-      },
-      {
-        to: '/icons',
-        icon: 'mdi-chart-bubble',
-        text: 'Icons'
-      },
-      {
-        to: '/maps',
-        icon: 'mdi-map-marker',
-        text: 'Maps'
-      },
-      {
-        to: '/notifications',
-        icon: 'mdi-bell',
-        text: 'Notifications'
       }
     ]
   }),
@@ -156,7 +94,6 @@ export default {
       }
     }
   },
-
   methods: {
     ...mapMutations('app', ['setDrawer', 'toggleDrawer'])
   }
