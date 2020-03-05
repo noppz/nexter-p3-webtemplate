@@ -80,6 +80,16 @@ export default {
         to: '/',
         icon: 'mdi-view-dashboard',
         text: 'Dashboard'
+      },
+      {
+        to: '/items',
+        icon: 'mdi-view-dashboard',
+        text: 'Items'
+      },
+      {
+        to: '/products',
+        icon: 'mdi-view-dashboard',
+        text: 'Products'
       }
     ]
   }),

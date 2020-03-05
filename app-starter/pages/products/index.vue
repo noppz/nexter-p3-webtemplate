@@ -1,6 +1,7 @@
 <template>
   <v-layout>
-    <v-container class="pa-0">
+    <v-container>
+      <!--
       <v-row dense>
         <v-col cols="12" xs="12">
           <v-card outlined>
@@ -8,60 +9,55 @@
           </v-card>
         </v-col>
       </v-row>
+      -->
       <v-row dense>
         <v-col cols="12" xs="12">
-          <v-data-table
-            :headers="tableHeader"
-            :items="tableData"
-            :page.sync="page"
-            :items-per-page="itemsPerPage.value"
-            :search="search"
-            sort-by="calories"
-            class="elevation-1"
-            hide-default-footer
-            dense
-            @page-count="pageCount = $event"
-          >
-            <template v-slot:item.product_status="{ item }">
-              <v-chip :color="getColor(item.product_status)" small dark>
-                {{ getText(item.product_status) }}
-              </v-chip>
-            </template>
-            <template v-slot:top>
-              <v-toolbar flat color="white">
+          <material-card color="blue">
+            <template v-slot:header>
+              <v-toolbar flat color="transparent">
                 <v-toolbar-title>{{ modules.title }}</v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-text-field
-                  v-model="search"
-                  append-icon="mdi-magnify"
-                  label="Search"
-                  single-line
-                  hide-details
-                ></v-text-field>
-                <v-btn class="text-inherit ml-4" color="primary" to="/products/edit">
+                <div class="d-flex" style="width:280px;">
+                  <v-text-field
+                    v-model="search"
+                    append-icon="mdi-magnify"
+                    label="Search"
+                    single-line
+                    dense
+                    hide-details
+                    full-width
+                  ></v-text-field>
+                </div>
+                <v-btn
+                  class="text-inherit ml-4"
+                  style="width:180px;"
+                  color="warning"
+                  to="/products/edit"
+                  rounded
+                >
                   Create Product
                 </v-btn>
                 <!-- START DELETE DIALOG -->
                 <v-dialog v-model="dialog2" :max-width="widthSize">
                   <v-card>
-                    <v-card-title>
+                    <v-card-title class="justify-center">
                       <span class="headline">Delete Item</span>
                     </v-card-title>
-                    <v-card-text class="py-0">
-                      <v-container>
-                        <v-row dense>
-                          <v-col cols="12">
-                            Do you confim to delete thie item?
-                          </v-col>
-                        </v-row>
-                      </v-container>
+                    <v-card-text class="text-center mt-4 mb-2">
+                      Do you confim to delete thie item?
                     </v-card-text>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn text @click="close2">
+                    <v-card-actions class="justify-center">
+                      <v-btn outlined rounded style="width: 6rem;" class="mx-1" @click="close2">
                         Cancel
                       </v-btn>
-                      <v-btn dark color="red" @click="confirmDelete">
+                      <v-btn
+                        dark
+                        color="red"
+                        style="width: 6rem;"
+                        class="mx-1"
+                        rounded
+                        @click="confirmDelete"
+                      >
                         Confirm
                       </v-btn>
                     </v-card-actions>
@@ -70,43 +66,60 @@
                 <!-- END DELETE DIALOG -->
               </v-toolbar>
             </template>
-            <template v-slot:item.action="{ item }">
-              <v-btn icon @click="updateItem(item)">
-                <v-icon small>
-                  mdi-pencil
-                </v-icon>
-              </v-btn>
-              <v-btn icon @click="deleteItem(item)">
-                <v-icon small>mdi-delete</v-icon>
-              </v-btn>
-            </template>
-            <template v-slot:no-data>
-              <v-btn color="primary" class="my-4" small icon @click="initialize">
-                <v-icon>mdi-refresh</v-icon>
-              </v-btn>
-            </template>
-          </v-data-table>
-          <div class="d-flex">
-            <v-select
-              v-model="itemsPerPage"
-              :hint="`display ${itemsPerPage.label}`"
-              :items="selectCount"
-              item-text="label"
-              item-value="value"
-              label="Items per page"
-              persistent-hint
-              return-object
-              single-line
-              @input="setSelectedCount"
-            ></v-select>
-            <v-pagination
-              v-model="page"
-              class="justify-end"
-              :length="pageCount"
-              prev-icon="mdi-menu-left"
-              next-icon="mdi-menu-right"
-            ></v-pagination>
-          </div>
+            <v-data-table
+              :headers="tableHeader"
+              :items="tableData"
+              :page.sync="page"
+              :items-per-page="itemsPerPage.value"
+              :search="search"
+              sort-by="calories"
+              hide-default-footer
+              @page-count="pageCount = $event"
+            >
+              <template v-slot:item.product_status="{ item }">
+                <v-chip :color="getColor(item.product_status)" small dark>
+                  {{ getText(item.product_status) }}
+                </v-chip>
+              </template>
+              <template v-slot:item.action="{ item }">
+                <v-btn icon @click="updateItem(item)">
+                  <v-icon small>
+                    mdi-pencil
+                  </v-icon>
+                </v-btn>
+                <v-btn icon @click="deleteItem(item)">
+                  <v-icon small>mdi-delete</v-icon>
+                </v-btn>
+              </template>
+              <template v-slot:no-data>
+                <v-btn color="primary" class="my-4" small icon @click="initialize">
+                  <v-icon>mdi-refresh</v-icon>
+                </v-btn>
+              </template>
+            </v-data-table>
+            <div class="d-flex">
+              <v-select
+                v-model="itemsPerPage"
+                :hint="`display ${itemsPerPage.label}`"
+                :items="selectCount"
+                item-text="label"
+                item-value="value"
+                label="Items per page"
+                persistent-hint
+                return-object
+                single-line
+                @input="setSelectedCount"
+              ></v-select>
+              <v-pagination
+                v-model="page"
+                class="justify-end"
+                :length="pageCount"
+                prev-icon="mdi-menu-left"
+                next-icon="mdi-menu-right"
+                circle
+              ></v-pagination>
+            </div>
+          </material-card>
         </v-col>
       </v-row>
     </v-container>

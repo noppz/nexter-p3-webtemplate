@@ -145,19 +145,7 @@ export default {
     theme: {
       default: 'light',
       dark: false,
-      light: true,
-      themes: {
-        light: {
-          primary: '#1976D2',
-          secondary: '#424242',
-          accent: '#82B1FF'
-        },
-        dark: {
-          primary: '#2196F3',
-          secondary: '#424242',
-          accent: '#FF4081'
-        }
-      }
+      light: true
     }
   },
   /*

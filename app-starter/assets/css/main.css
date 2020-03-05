@@ -1,10 +1,8 @@
-html,
-body {
-  font-size: 16px;
-}
-.text-inherit {
+.text-inherit,
+.text-inherit .v-btn {
   text-transform: none !important;
 }
+
 /* AppBar */
 #core-app-bar {
   width: auto;
@@ -26,4 +24,10 @@ body {
 }
 .v-offset--full-width {
   max-width: 100%;
+}
+
+.v-input--is-focused.v-text-field--rounded.v-overflow-btn.v-select--is-menu-active .v-input__slot,
+.v-input--is-focused.v-text-field--rounded.v-overflow-btn .v-input__slot,
+.v-text-field--rounded.v-overflow-btn.v-select--is-menu-active .v-input__slot {
+  border-radius: 28px;
 }

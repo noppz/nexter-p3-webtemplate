@@ -1,125 +1,85 @@
 <template>
   <v-layout>
-    <v-container class="pa-0">
-      <v-row dense>
-        <v-col cols="12">
-          <v-card outlined>
-            <v-breadcrumbs :items="breadcrumbs" class="py-2 px-4"></v-breadcrumbs>
-          </v-card>
-        </v-col>
-      </v-row>
+    <v-container>
       <v-row dense align="center" justify="center">
         <v-col cols="12">
-          <v-card>
-            <v-card-title>
-              <span class="headline">รายการสินค้า</span>
-            </v-card-title>
-            <v-card-text class="py-0">
-              <v-container>
-                <v-row dense>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="editedItem.sapcode"
-                      label="SAP code"
-                      small
-                      dense
-                      outlined
-                      clear-icon="mdi-close-circle-outline"
-                      clearable
-                      hide-details="auto"
-                    >
-                      <v-btn slot="append" class="pa-0" small text color="primary">
-                        Check
-                      </v-btn>
-                    </v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="editedItem.product_name"
-                      label="ชื่อสินค้า"
-                      small
-                      dense
-                      outlined
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="editedItem.product_description"
-                      label="อื่นๆ (ระบุ)"
-                      small
-                      dense
-                      outlined
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="editedItem.barcode"
-                      label="Barcode"
-                      small
-                      dense
-                      outlined
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="editedItem.unit_th"
-                      label="หน่วยขาย (TH)"
-                      small
-                      dense
-                      outlined
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="editedItem.unit_en"
-                      label="หน่วยขาย (EN)"
-                      small
-                      dense
-                      outlined
-                      hide-details="auto"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-select label="หมวด" small dense outlined hide-details="auto"></v-select>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-select label="หมวดย่อย" small dense outlined hide-details="auto"></v-select>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-select
-                      label="หมวดย่อย ลำดับที่ 2"
-                      small
-                      dense
-                      outlined
-                      hide-details="auto"
-                    ></v-select>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-select
-                      label="หมวดย่อย ลำดับที่ 3"
-                      small
-                      dense
-                      outlined
-                      hide-details="auto"
-                    ></v-select>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn text @click="cancel">
-                Cancel
-              </v-btn>
-              <v-btn color="primary" @click="save">
-                Save
-              </v-btn>
-            </v-card-actions>
-          </v-card>
+          <material-card color="blue">
+            <template v-slot:header>
+              <v-toolbar flat color="transparent">
+                <v-toolbar-title>รายการสินค้า</v-toolbar-title>
+              </v-toolbar>
+            </template>
+            <v-container>
+              <v-row dense justify="center">
+                <v-col cols="12" md="8">
+                  <v-text-field
+                    v-model="editedItem.sapcode"
+                    label="SAP code"
+                    dense
+                    clear-icon="mdi-close-circle-outline"
+                    clearable
+                  >
+                    <v-btn slot="append" class="pa-0" small text color="primary">
+                      Check
+                    </v-btn>
+                  </v-text-field>
+                </v-col>
+                <v-col cols="12" md="8">
+                  <v-text-field
+                    v-model="editedItem.product_name"
+                    label="ชื่อสินค้า"
+                    dense
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="8">
+                  <v-text-field
+                    v-model="editedItem.product_description"
+                    label="อื่นๆ (ระบุ)"
+                    dense
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="8">
+                  <v-text-field v-model="editedItem.barcode" label="Barcode" dense></v-text-field>
+                </v-col>
+                <v-col cols="12" md="8">
+                  <v-text-field
+                    v-model="editedItem.unit_th"
+                    label="หน่วยขาย (TH)"
+                    dense
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="8">
+                  <v-text-field
+                    v-model="editedItem.unit_en"
+                    label="หน่วยขาย (EN)"
+                    dense
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="8">
+                  <v-select label="หมวด" small dense></v-select>
+                </v-col>
+                <v-col cols="12" md="8">
+                  <v-select label="หมวดย่อย" small dense></v-select>
+                </v-col>
+                <v-col cols="12" md="8">
+                  <v-select label="หมวดย่อย ลำดับที่ 2" small dense></v-select>
+                </v-col>
+                <v-col cols="12" md="8">
+                  <v-select label="หมวดย่อย ลำดับที่ 3" small dense></v-select>
+                </v-col>
+                <v-col cols="12" md="8">
+                  <div class="text-center">
+                    <v-btn outlined rounded style="width: 6rem;" class="mx-1" @click="cancel">
+                      Cancel
+                    </v-btn>
+                    <v-btn color="primary" rounded style="width: 6rem;" class="mx-1" @click="save">
+                      Save
+                    </v-btn>
+                  </div>
+                </v-col>
+              </v-row>
+            </v-container>
+          </material-card>
         </v-col>
       </v-row>
     </v-container>

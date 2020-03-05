@@ -24,6 +24,11 @@
                     Text Color
                   </div>
                 </v-col>
+                <v-col v-if="i === 15" cols="12">
+                  <div class="display-1 text-center py-2" style="border: 1px solid #ccc;">
+                    Content
+                  </div>
+                </v-col>
                 <v-col cols="12" md="2">
                   <span v-text="t[0]" />
                 </v-col>
@@ -31,10 +36,49 @@
                   <component
                     :is="t[2]"
                     :class="t[3]"
-                    style="border-bottom: 1px solid #ddd; padding: 1rem; margin: 0.5rem 0;"
+                    style="border-bottom: 1px solid #ddd; padding: 0.5rem 1rem; margin: 0.5rem 0;"
                   >
                     {{ t[1] }}
                   </component>
+                </v-col>
+              </v-row>
+              <!-- CODE -->
+              <v-row>
+                <v-col cols="12" md="2">
+                  <span v-text="'code <code>'" />
+                </v-col>
+                <v-col cols="12" md="10">
+                  <div
+                    style="border-bottom: 1px solid #ddd; padding: 0.5rem 1rem; margin: 0.5rem 0;"
+                  >
+                    <code> $z = $x + $y;</code>
+                  </div>
+                </v-col>
+              </v-row>
+              <!-- VARIABLE -->
+              <v-row>
+                <v-col cols="12" md="2">
+                  <span v-text="'variable <var>'" />
+                </v-col>
+                <v-col cols="12" md="10">
+                  <div
+                    style="border-bottom: 1px solid #ddd; padding: 0.5rem 1rem; margin: 0.5rem 0;"
+                  >
+                    <var>$C</var> = <var>$A</var> x <var>$B</var>;
+                  </div>
+                </v-col>
+              </v-row>
+              <!-- KEYBOATD INPUT -->
+              <v-row>
+                <v-col cols="12" md="2">
+                  <span v-text="'keyboard input <kbd>'" />
+                </v-col>
+                <v-col cols="12" md="10">
+                  <div
+                    style="border-bottom: 1px solid #ddd; padding: 0.5rem 1rem; margin: 0.5rem 0;"
+                  >
+                    Please press button <kbd>Enter</kbd>
+                  </div>
                 </v-col>
               </v-row>
             </v-container>
@@ -73,13 +117,16 @@ export default {
       ['subtitle-1', material, 'h5', 'subtitle-1'],
       ['subtitle-2', material, 'h6', 'subtitle-2'],
       // Text Color
-      ['primary', leaderShort, 'p', 'primary--text font-weight-black'],
-      ['secondary', leaderShort, 'p', 'secondary--text font-weight-black'],
-      ['accent', leaderShort, 'p', 'accent--text font-weight-black'],
-      ['info', leaderShort, 'p', 'info--text font-weight-black'],
-      ['success', leaderShort, 'p', 'success--text font-weight-black'],
-      ['warning', leaderShort, 'p', 'warning--text font-weight-black'],
-      ['error', leaderShort, 'p', 'error--text font-weight-black']
+      ['primary', leaderShort, 'p', 'primary--text'],
+      ['secondary', leaderShort, 'p', 'secondary--text'],
+      ['accent', leaderShort, 'p', 'accent--text'],
+      ['info', leaderShort, 'p', 'info--text'],
+      ['success', leaderShort, 'p', 'success--text'],
+      ['warning', leaderShort, 'p', 'warning--text'],
+      ['error', leaderShort, 'p', 'error--text'],
+      // Content
+      ['paragraph <p>', leader, 'p', ''],
+      ['block quote <blockquote>', leader, 'blockquote', 'blockquote']
     ]
   })
 }

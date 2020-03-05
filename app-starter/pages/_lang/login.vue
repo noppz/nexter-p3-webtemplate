@@ -3,22 +3,12 @@
     <v-container style="min-width: 320px;" class="mb-2">
       <v-row align="center" justify="center">
         <v-col cols="12" xs="12" sm="6" lg="4">
-          <material-card color="blue" class="text-center">
+          <material-card color="blue">
             <template v-slot:header>
-              <div class="px-3 mx-auto">
-                <div class="title mb-2">
-                  Digital Partner System
-                </div>
-
-                <div class="category text-center">
-                  Handcrafted by us with
-                  <v-icon size="17">
-                    mdi-heart
-                  </v-icon>
-                </div>
+              <div class="headline font-weight-bold mx-auto">
+                Digital Partner System
               </div>
             </template>
-
             <v-card-text>
               <v-form>
                 <v-text-field
@@ -28,8 +18,9 @@
                   prepend-icon="mdi-account"
                   type="text"
                   :rules="[rules.required]"
+                  dense
                 />
-                <div class="my-2"></div>
+                <div class="my-1"></div>
                 <v-text-field
                   v-model="password"
                   :label="$t('login.password')"
@@ -37,11 +28,12 @@
                   prepend-icon="mdi-lock"
                   type="password"
                   :rules="[rules.required]"
+                  dense
                 />
               </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-btn block dark color="blue" @click="login">{{ $t('login.login') }}</v-btn>
+              <v-btn block dark rounded color="blue" @click="login">{{ $t('login.login') }}</v-btn>
             </v-card-actions>
           </material-card>
           <!-- -->
