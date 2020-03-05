@@ -13,30 +13,27 @@
             </h2>
 
             <v-container class="pa-0" fluid>
-              <v-row v-for="(t, i) in typography" :key="i" align="end">
-                <v-col cols="1" md="3">
-                  <span class="tim-note" v-text="t[0]" />
+              <v-row v-for="(t, i) in typography" :key="i" align="center">
+                <v-col v-if="i === 0" cols="12">
+                  <div class="display-1 text-center py-2" style="border: 1px solid #ccc;">
+                    Text Size
+                  </div>
                 </v-col>
-
-                <v-col cols="8">
-                  <component :is="t[2]" :class="i">
-                    <template v-if="i !== 'quote'">
-                      {{ t[1] }}
-                    </template>
-
-                    <p v-if="i === 'quote'">
-                      {{ t[1] }}
-                    </p>
-                    <small v-if="i === 'quote'">
-                      Kanye West, Musician
-                    </small>
-
-                    <template v-if="i === 'small'">
-                      <br />
-                      <small>
-                        Use 'small' tag for the headers
-                      </small>
-                    </template>
+                <v-col v-if="i === 8" cols="12">
+                  <div class="display-1 text-center py-2" style="border: 1px solid #ccc;">
+                    Text Color
+                  </div>
+                </v-col>
+                <v-col cols="12" md="2">
+                  <span v-text="t[0]" />
+                </v-col>
+                <v-col cols="12" md="10">
+                  <component
+                    :is="t[2]"
+                    :class="t[3]"
+                    style="border-bottom: 1px solid #ddd; padding: 1rem; margin: 0.5rem 0;"
+                  >
+                    {{ t[1] }}
                   </component>
                 </v-col>
               </v-row>
@@ -52,44 +49,38 @@
 const leader =
   'I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.'
 const leaderShort = leader.slice(0, 105) + '...'
-const material = 'The Life of Material Dashboard'
-const small = 'Header with small subtitle'
+const material = 'Material Dashboard'
+
+// Content Element
+// ['<p>', leader, 'p', ''],
+// ['<blockquote>', leader, 'blockquote', 'blockquote'],
+// ['<code>', 'CODE', 'code', ''],
+// ['<var>', 'variable', 'var', ''],
+// ['<kbd>', 'keyboard input', 'kbd', ''],
 
 export default {
   layout: 'example',
   auth: 'guest',
   data: () => ({
-    typography: {
-      'heading-1': ['Header 1', material, 'h1'],
-      'heading-2': ['Header 2', material, 'h2'],
-      'heading-3': ['Header 3', material, 'h3'],
-      'heading-4': ['Header 4', material, 'h4'],
-      'heading-5': ['Header 5', material, 'h5'],
-      'heading-6 text-uppercase': ['Header 6', material, 'h6'],
-      '': ['Paragraph', leader, 'p'],
-      quote: ['Quote', leader, 'blockquote'],
-      'text--disabled': ['Muted Text', leaderShort, 'p'],
-      'text-primary': ['Primary Text', leaderShort, 'p'],
-      'text-info': ['Info Text', leaderShort, 'p'],
-      'text-success': ['Success Text', leaderShort, 'p'],
-      'text-warning': ['Warning Text', leaderShort, 'p'],
-      'text-danger': ['Danger Text', leaderShort, 'p'],
-      small: ['Small Tag', small, 'h2']
-    }
+    typography: [
+      // Text Size
+      ['display-4', material, 'div', 'display-4'],
+      ['display-3', material, 'div', 'display-3'],
+      ['display-2', material, 'h1', 'display-2'],
+      ['display-1', material, 'h2', 'display-1'],
+      ['headline', material, 'h3', 'headline'],
+      ['title', material, 'h4', 'title'],
+      ['subtitle-1', material, 'h5', 'subtitle-1'],
+      ['subtitle-2', material, 'h6', 'subtitle-2'],
+      // Text Color
+      ['primary', leaderShort, 'p', 'primary--text font-weight-black'],
+      ['secondary', leaderShort, 'p', 'secondary--text font-weight-black'],
+      ['accent', leaderShort, 'p', 'accent--text font-weight-black'],
+      ['info', leaderShort, 'p', 'info--text font-weight-black'],
+      ['success', leaderShort, 'p', 'success--text font-weight-black'],
+      ['warning', leaderShort, 'p', 'warning--text font-weight-black'],
+      ['error', leaderShort, 'p', 'error--text font-weight-black']
+    ]
   })
 }
 </script>
-
-<style lang="scss">
-.tim-note {
-  bottom: 10px;
-  color: #c0c1c2;
-  display: block;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 13px;
-  left: 0;
-  margin-left: 20px;
-  width: 260px;
-}
-</style>
