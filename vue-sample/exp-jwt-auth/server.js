@@ -8,6 +8,8 @@ var corsOptions = {
   origin: ['http://localhost:3000', 'http://localhost:9000']
 };
 
+var bcrypt = require('bcryptjs');
+
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
@@ -17,31 +19,48 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = require('./app/models');
-// const Role = db.role;
+const Role = db.role;
+// const User = db.user;
+// const UserRole = db.userRole;
 const Product = db.product;
 
-// force = true Existing Table will drop and resync
-db.sequelize.sync({ force: false }).then(() => {
+// IF force: true Existing Table will drop and resync at everytime starting server
+// ELSE no action
+// DEFAULT force = true
+const forceDropResync = true;
+
+db.sequelize.sync({ 
+  force: forceDropResync
+}).then(() => {
   // console.log('Drop and Resync Db'); 
   initial();
 });
 
 let initial = () => {
+  Role.bulkCreate([
+    { name: 'user' },
+    { name: 'moderator' },
+    { name: 'admin' }
+  ]);
+
   /*
-  Role.create({
-    id: 1,
-    name: 'user'
-  });
+    User.create({
+      username: 'test',
+      email: 'test@test.com',
+      password: bcrypt.hashSync('12345', 8)
+    });
 
-  Role.create({
-    id: 2,
-    name: 'moderator'
-  });
+    User.create({
+      username: 'mod',
+      email: 'moderator@test.com',
+      password: bcrypt.hashSync('12345', 8)
+    });
 
-  Role.create({
-    id: 3,
-    name: 'admin'
-  });
+    User.create({
+      username: 'admin',
+      email: 'admin@test.com',
+      password: bcrypt.hashSync('12345', 8)
+    });
   */
 }
 

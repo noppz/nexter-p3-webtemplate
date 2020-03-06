@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const ProductCategory = sequelize.define('product_categories', {
+  const ProductCategory = sequelize.define('product_category', {
     name: {
       type: Sequelize.STRING
     },
