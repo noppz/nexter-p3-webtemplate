@@ -3,7 +3,7 @@
 		<core-app-bar />
 		<core-drawer />
 		<core-view />
-		<!-- <core-footer /> -->
+		<core-footer />
 	</v-app>
 </template>
 
@@ -19,7 +19,7 @@ export default {
 		CoreDrawer: () => import('@/components/core/Drawer'),
 		CoreAppBar: () => import('@/components/core/AppBar'),
 		CoreView: () => import('@/components/core/View'),
-		// CoreFooter: () => import('@/components/core/Footer'),
+		CoreFooter: () => import('@/components/core/Footer'),
 	},
 };
 </script>
