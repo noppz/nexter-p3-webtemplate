@@ -31,13 +31,7 @@
       <!-- Bug in Vuetify for first child of v-list not receiving proper border-radius -->
       <div />
 
-      <v-list-item
-        v-for="(link, i) in links"
-        :key="i"
-        :to="link.to"
-        exact
-        active-class="primary white--text"
-      >
+      <v-list-item v-for="(link, i) in links" :key="i" :to="link.to" exact :active-class="color">
         <v-list-item-action>
           <v-icon>{{ link.icon }}</v-icon>
         </v-list-item-action>
@@ -46,12 +40,12 @@
       </v-list-item>
     </v-list>
 
-    <v-list-group prepend-icon="account_circle">
+    <v-list-group prepend-icon="account_circle" :color="color">
       <template v-slot:activator>
         <v-list-item-title class="caption py-0">Users</v-list-item-title>
       </template>
 
-      <v-list-group sub-group no-action>
+      <v-list-group sub-group no-action :color="color">
         <template v-slot:activator>
           <v-list-item-content>
             <v-list-item-title class="caption">Admin</v-list-item-title>
@@ -66,7 +60,7 @@
         </v-list-item>
       </v-list-group>
 
-      <v-list-group sub-group no-action>
+      <v-list-group sub-group no-action :color="color">
         <template v-slot:activator>
           <v-list-item-content>
             <v-list-item-title class="caption">Actions</v-list-item-title>
@@ -99,16 +93,11 @@
 
 <script>
 // Utilities
-import { mapMutations, mapState } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  props: {
-    opened: {
-      type: Boolean,
-      default: false
-    }
-  },
   data: () => ({
+    responsive: true,
     links: [
       {
         to: '/example',
@@ -157,20 +146,35 @@ export default {
       ['Delete', 'delete']
     ]
   }),
-
   computed: {
-    ...mapState('app', ['image', 'color']),
+    ...mapGetters({
+      image: 'app/getImage',
+      color: 'app/getColor',
+      drawer: 'app/getDrawer'
+    }),
     inputValue: {
       get() {
-        return this.$store.state.app.drawer
+        return this.drawer
       },
       set(val) {
         this.setDrawer(val)
       }
     }
   },
+  mounted() {
+    this.onResponsiveInverted()
+    window.addEventListener('resize', this.onResponsiveInverted)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResponsiveInverted)
+  },
   methods: {
-    ...mapMutations('app', ['setDrawer', 'toggleDrawer'])
+    ...mapActions({
+      setDrawer: 'app/setDrawer'
+    }),
+    onResponsiveInverted() {
+      this.responsive = window.innerWidth < 991
+    }
   }
 }
 </script>

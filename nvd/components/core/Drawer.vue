@@ -9,7 +9,7 @@
 		floating
 		mobile-break-point="991"
 		persistent
-		width="240"
+		width="260"
 	>
 		<template v-slot:img="attrs">
 			<v-img v-bind="attrs" gradient="to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)" />
@@ -40,7 +40,6 @@
 			</v-list-item>
 		</v-list>
 
-		<!--
 		<template v-slot:append>
 			<v-list nav>
 				<v-list-item to="#">
@@ -54,7 +53,6 @@
 				</v-list-item>
 			</v-list>
 		</template>
-		-->
 	</v-navigation-drawer>
 </template>
 

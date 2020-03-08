@@ -90,12 +90,17 @@
                         </v-row>
                       </v-container>
                     </v-card-text>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn text @click="close">
+                    <v-card-actions class="justify-center">
+                      <v-btn outlined rounded style="width: 6rem;" class="mx-1" @click="close">
                         Cancel
                       </v-btn>
-                      <v-btn color="primary" @click="save">
+                      <v-btn
+                        color="primary"
+                        style="width: 6rem;"
+                        class="mx-1"
+                        rounded
+                        @click="save"
+                      >
                         Save
                       </v-btn>
                     </v-card-actions>
@@ -132,15 +137,30 @@
               </v-toolbar>
             </template>
             <v-data-table
+              v-model="selected"
               :headers="tableHeader"
               :items="tableData"
               :page.sync="page"
               :items-per-page="itemsPerPage.value"
               :search="search"
-              sort-by="calories"
+              :expanded.sync="expanded"
+              item-key="name"
+              show-select
+              show-expand
               hide-default-footer
               @page-count="pageCount = $event"
             >
+              <!-- Custom Column -->
+              <template v-slot:item.status="{ item }">
+                <v-chip :color="getColor(item.status)" small dark>
+                  {{ getText(item.status) }}
+                </v-chip>
+              </template>
+              <template v-slot:item.source="{ item }">
+                <v-chip :color="getColor(item.source)" small dark>
+                  {{ getText(item.source) }}
+                </v-chip>
+              </template>
               <template v-slot:item.action="{ item }">
                 <v-btn icon @click="editItem(item)">
                   <v-icon small>
@@ -154,6 +174,26 @@
                   <v-icon small>mdi-pencil-box-outline</v-icon>
                 </v-btn>
               </template>
+              <!-- Show Expand -->
+              <template v-slot:expanded-item="{ headers, item }">
+                <td :colspan="headers.length" class="pa-0">
+                  <v-list elevation="0" dense style="border-radius: 0;">
+                    <v-list-item>
+                      <v-list-item-content>Calories: {{ item.calories }}</v-list-item-content>
+                    </v-list-item>
+                    <v-list-item>
+                      <v-list-item-content>Carbs: {{ item.carbs }}</v-list-item-content>
+                    </v-list-item>
+                    <v-list-item>
+                      <v-list-item-content>Fat: {{ item.fat }}</v-list-item-content>
+                    </v-list-item>
+                    <v-list-item>
+                      <v-list-item-content>Protein: {{ item.protein }}</v-list-item-content>
+                    </v-list-item>
+                  </v-list>
+                </td>
+              </template>
+              <!-- No Data -->
               <template v-slot:no-data>
                 <v-btn color="primary" class="my-4" small icon @click="initialize">
                   <v-icon>mdi-refresh</v-icon>
@@ -190,6 +230,7 @@
 </template>
 
 <script>
+import desserts from '@/sample_data/desserts.json'
 const breadcrumbInfo = [
   {
     text: 'Items',
@@ -206,86 +247,19 @@ const tableHeaders = [
   {
     text: 'Dessert (100g serving)',
     value: 'name',
-    sortable: false,
     align: 'left'
   },
+  /*
   { text: 'Calories', value: 'calories', align: 'right' },
   { text: 'Fat (g)', value: 'fat', align: 'right' },
   { text: 'Carbs (g)', value: 'carbs', align: 'right' },
   { text: 'Protein (g)', value: 'protein', align: 'right' },
-  { text: 'Actions', value: 'action', sortable: false, align: 'center' }
-]
-const tableDatum = [
-  {
-    name: 'Frozen Yogurt',
-    calories: 159,
-    fat: 6.0,
-    carbs: 24,
-    protein: 4.0
-  },
-  {
-    name: 'Ice cream sandwich',
-    calories: 237,
-    fat: 9.0,
-    carbs: 37,
-    protein: 4.3
-  },
-  {
-    name: 'Eclair',
-    calories: 262,
-    fat: 16.0,
-    carbs: 23,
-    protein: 6.0
-  },
-  {
-    name: 'Cupcake',
-    calories: 305,
-    fat: 3.7,
-    carbs: 67,
-    protein: 4.3
-  },
-  {
-    name: 'Gingerbread',
-    calories: 356,
-    fat: 16.0,
-    carbs: 49,
-    protein: 3.9
-  },
-  {
-    name: 'Jelly bean',
-    calories: 375,
-    fat: 0.0,
-    carbs: 94,
-    protein: 0.0
-  },
-  {
-    name: 'Lollipop',
-    calories: 392,
-    fat: 0.2,
-    carbs: 98,
-    protein: 0
-  },
-  {
-    name: 'Honeycomb',
-    calories: 408,
-    fat: 3.2,
-    carbs: 87,
-    protein: 6.5
-  },
-  {
-    name: 'Donut',
-    calories: 452,
-    fat: 25.0,
-    carbs: 51,
-    protein: 4.9
-  },
-  {
-    name: 'KitKat',
-    calories: 518,
-    fat: 26.0,
-    carbs: 65,
-    protein: 7
-  }
+  */
+  { text: 'Source', value: 'source', sortable: false, align: 'center' },
+  { text: 'Status', value: 'status', sortable: false, align: 'center' },
+  { text: 'Actions', value: 'action', sortable: false, align: 'center' },
+  // show expand on last column, default first column
+  { text: '', value: 'data-table-expand' }
 ]
 const objectItem = {
   name: '',
@@ -294,13 +268,13 @@ const objectItem = {
   carbs: 0,
   protein: 0
 }
-
 const countItems = [
   { label: '5', value: 5 },
   { label: '10', value: 10 },
   { label: '20', value: 20 },
   { label: '50', value: 50 }
 ]
+const sampleData = desserts.data
 
 export default {
   data() {
@@ -319,6 +293,8 @@ export default {
       pageCount: 0,
       itemsPerPage: { label: '10', value: 10 },
       selectCount: countItems,
+      selected: [],
+      expanded: [],
       tableHeader: tableHeaders,
       tableData: [],
       editedIndex: -1,
@@ -337,7 +313,8 @@ export default {
   },
   methods: {
     initialize() {
-      this.tableData = tableDatum
+      this.tableData = sampleData
+      // console.log(JSON.stringify(this.tableData))
     },
     setSelectedCount(item) {
       this.itemsPerPage = item
@@ -384,6 +361,15 @@ export default {
       this.tableData.splice(index, 1)
       this.deleteItemIndex = null
       this.dialog2 = false
+    },
+    getColor(val) {
+      if (val === 0) return 'red'
+      else if (val === 1) return 'green'
+    },
+    getText(val) {
+      if (val === 0) return 'Inactive'
+      else if (val === 1) return 'Active'
+      else return ''
     }
   }
 }

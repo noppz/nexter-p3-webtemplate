@@ -22,7 +22,8 @@ const db = require('./app/models');
 const Role = db.role;
 // const User = db.user;
 // const UserRole = db.userRole;
-const Product = db.product;
+// const Product = db.product;
+const itemCategory = db.itemCategory;
 
 // IF force: true Existing Table will drop and resync at everytime starting server
 // ELSE no action
@@ -62,6 +63,30 @@ let initial = () => {
       password: bcrypt.hashSync('12345', 8)
     });
   */
+
+  itemCategory.bulkCreate([
+    { name: 'Baby Foods' },
+    { name: 'Baked Products' },
+    { name: 'Beef Products' },
+    { name: 'Beverages' },
+    { name: 'Breakfast Cereals' },
+    { name: 'Cereal Grains and Pasta' },
+    { name: 'Dairy and Egg Products' },
+    { name: 'Fats and Oils' },
+    { name: 'Finfish and Shellfish Products' },
+    { name: 'Fruits and Fruit Juices' },
+    { name: 'Lamb, Veal, and Game Products' },
+    { name: 'Legumes and Legume Products' },
+    { name: 'Nut and Seed Products' },
+    { name: 'Pork Products' },
+    { name: 'Poultry Products' },
+    { name: 'Sausages and Luncheon Meats' },
+    { name: 'Snacks' },
+    { name: 'Soups, Sauces, and Gravies' },
+    { name: 'Spices and Herbs' },
+    { name: 'Sweets' },
+    { name: 'Vegetables and Vegetable Products' }
+  ]);
 }
 
 // simple route
@@ -72,6 +97,7 @@ app.get('/', (req, res) => {
 // routes
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
+require('./app/routes/item.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

@@ -65,16 +65,11 @@
 
 <script>
 // Utilities
-import { mapMutations, mapState } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  props: {
-    opened: {
-      type: Boolean,
-      default: false
-    }
-  },
   data: () => ({
+    responsive: false,
     links: [
       {
         to: '/',
@@ -93,20 +88,35 @@ export default {
       }
     ]
   }),
-
   computed: {
-    ...mapState('app', ['image', 'color']),
+    ...mapGetters({
+      image: 'app/getImage',
+      color: 'app/getColor',
+      drawer: 'app/getDrawer'
+    }),
     inputValue: {
       get() {
-        return this.$store.state.app.drawer
+        return this.drawer
       },
       set(val) {
         this.setDrawer(val)
       }
     }
   },
+  mounted() {
+    this.onResponsiveInverted()
+    window.addEventListener('resize', this.onResponsiveInverted)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResponsiveInverted)
+  },
   methods: {
-    ...mapMutations('app', ['setDrawer', 'toggleDrawer'])
+    ...mapActions({
+      setDrawer: 'app/setDrawer'
+    }),
+    onResponsiveInverted() {
+      this.responsive = window.innerWidth < 991
+    }
   }
 }
 </script>

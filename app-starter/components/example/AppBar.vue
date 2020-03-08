@@ -12,13 +12,11 @@
     <v-toolbar-items>
       <v-row align="center" class="mx-0">
         <v-text-field class="mr-4 purple-input" color="purple" label="Search..." hide-details />
-
         <v-btn class="mx-1" icon to="/">
           <v-icon color="tertiary">
             mdi-view-dashboard
           </v-icon>
         </v-btn>
-
         <v-menu bottom left offset-y transition="slide-y-transition">
           <template v-slot:activator="{ attrs, on }">
             <v-btn class="toolbar-items mx-1" icon v-bind="attrs" v-on="on">
@@ -90,7 +88,7 @@
 
 <script>
 // Utilities
-import { mapMutations } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   data: () => ({
@@ -101,9 +99,15 @@ export default {
       'Another Notification',
       'Another One'
     ],
-    title: null,
-    responsive: false
+    title: 'Example',
+    responsive: true,
+    responsiveInput: true
   }),
+  computed: {
+    ...mapGetters({
+      drawer: 'app/getDrawer'
+    })
+  },
   watch: {
     $route(val) {
       this.title = val.name
@@ -117,15 +121,19 @@ export default {
     window.removeEventListener('resize', this.onResponsiveInverted)
   },
   methods: {
-    ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
-    toggleDrawer() {
-      this.setDrawer(!this.$store.state.app.drawer)
+    ...mapActions({
+      setDrawer: 'app/setDrawer'
+    }),
+    onClick() {
+      this.setDrawer(!this.drawer)
     },
     onResponsiveInverted() {
       if (window.innerWidth < 991) {
         this.responsive = true
+        this.responsiveInput = false
       } else {
         this.responsive = false
+        this.responsiveInput = true
       }
     }
   }

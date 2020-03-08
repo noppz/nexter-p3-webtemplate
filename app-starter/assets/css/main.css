@@ -31,3 +31,22 @@
 .v-text-field--rounded.v-overflow-btn.v-select--is-menu-active .v-input__slot {
   border-radius: 28px;
 }
+/* show expansion no shadow */
+.v-expansion-panel {
+  box-shadow: none;
+}
+
+/* color and image active filter */
+.theme--light.v-application .v-avatar.image-active,
+.theme--light.v-application .v-avatar.color-active,
+.theme--light.v-application .v-responsive.image-active,
+.theme--light.v-application .v-responsive.color-active {
+  border: 0.25rem solid #ccc !important;
+}
+
+.theme--dark.v-application .v-avatar.image-active,
+.theme--dark.v-application .v-avatar.color-active,
+.theme--dark.v-application .v-responsive.image-active,
+.theme--dark.v-application .v-responsive.color-active {
+  border: 0.25rem solid #ddd !important;
+}

@@ -1,6 +1,8 @@
 <template>
   <v-app>
+    <core-filter />
     <core-app-bar />
+    <core-filter />
     <core-drawer />
     <core-view />
   </v-app>
@@ -9,6 +11,7 @@
 <script>
 export default {
   components: {
+    CoreFilter: () => import('@/components/example/Filter'),
     CoreDrawer: () => import('@/components/example/Drawer'),
     CoreAppBar: () => import('@/components/example/AppBar'),
     CoreView: () => import('@/components/example/View')

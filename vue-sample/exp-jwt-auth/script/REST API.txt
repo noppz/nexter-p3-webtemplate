@@ -1,0 +1,32 @@
+[Create]
+POST
+/companies
+/companies/34/employees
+200 Ok
+201 Create
+
+[Retrive]
+GET
+/companies
+/companies/34
+/companies/34/employees
+/companies/34/employees/99
+200 Ok
+
+[Update]
+PUT
+/companies/34
+/companies/34/employees/99
+200 Ok 
+
+[Delete]
+DELTE
+/companies/34
+/companies/34/employees/99
+200 Ok
+204 No Content
+
+
+
+
+

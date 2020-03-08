@@ -32,7 +32,7 @@ module.exports = {
 		'~/plugins/components.js',
 		{ src: '~/plugins/ckeditor.js', mode: 'client' },
 	],
-	css: ['~/assets/less/main.less', '@/assets/css/main.css'],
+	css: ['~/assets/less/main.less'],
 	/*
 	 ** Customize the progress bar color
 	 */
@@ -56,7 +56,7 @@ module.exports = {
 				config.devtool = 'source-map';
 			}
 		},
-		transpile: [/^vuetify/, 'vuex-persist'],
+		transpile: [/^vuetify/],
 	},
 	modules: ['@nuxtjs/axios'],
 	axios: {

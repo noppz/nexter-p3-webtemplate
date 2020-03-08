@@ -1,0 +1,32 @@
+HTTP response status code (รหัสสถานะ)
+
+เมื่อ client สร้าง request ไปยัง server ผ่าน API, ควรจะรู้ผลสะท้อนกลับ ไม่ว่าการ request นั้น จะ Pass, Fail หรือ การ request นั้นผิด โดยที่ HTTP status จะเป็นรหัสมาตรฐานที่บอกสถานะของการ request ซึ่งจะมีหลากหลายในแต่ละสถานการณ์ ซึ่ง ตัว Server เองควรจะ return status code ให้ถูกต้อง
+
+ต่อไปนี้จะเป็น HTTP status code ที่สำคัญโดยแบ่งออกเป็นหมวดดังนี้:
+2xx (หมวด Success)
+
+เป็น status code ที่บอกว่าการ request นั้นได้รับแล้วและกระทำตาม method สำเร็จโดย Server
+
+    200 Ok เป็นมาตรฐานของ HTTP response นั้น Success สำหรับ GET, PUT หรือ POST
+    201 Create เป็น response สำหรับข้อมูลใหม่ได้ถูกสร้างขึ้น ใช้สำหรับ POST
+    204 No Content เป็น response สำหรับ request ที่ดำเนินการ Success แต่ไม่ได้ return ข้อมูลกลับ
+
+DELETE เป็นตัวอย่างที่ดี, DELETE /companies/34/employees/john จะ request ให้ลบ John ใน employees และใน return เราไม่จำเป็นต้องส่งข้อมูลกลับ เราร้องขอ System ให้ “ลบ” ข้อมูลออกแต่ถ้ามี error เกิดขึ้น อย่างเช่นข้อมูล John ไม่มีในระบบ แทนที่จะ return status code เป็น 2xx ในหมวด Success แต่จะ return status code เป็นหมวด 4xx แทน
+3xx (หมวด Redirection)
+
+    304 Not Modified เป็น status code ที่บอกว่า client ได้รับการ response แล้วอยู่ใน cache และไม่จำเป็นจะต้องส่งผ่านข้อมูลเดิมอีกครั้ง
+
+4xx (หมวด Client error)
+
+โดยที่ status code เหล่านี้จะบอก client ว่าสิ่งที่ request มานั้น Failed
+
+    400 Bad Request บอกว่า request ที่ส่งมาโดย client นั้นไม่ถูกดำเนินการ และ Server ไม่เข้าใจว่า request เกี่ยวกับอะไร
+    401 Unauthorized บอกว่า client ไม่ได้รับอนุญาตในการเข้าถึง Resource และควรจะ request ใหม่ด้วย credential
+    403 Forbidden บ่งบอกว่า request นั้นถูกต้องและ client ได้รับการอนุญาต แต่ Client ไม่ได้รับการอนุญาตให้เข้าถึง Resource หรือหน้าเพจด้วยเหตุผลบางประการ เช่น บางครั้ง Client ที่ได้รับอนุญาต ไม่อนุญาตให้เข้าถึงระบบไฟล์
+    404 Not Found บ่งบอกว่า resource ที่ request มานั้น ไม่ว่างใช้งานตอนนี้
+    405 Gone บ่งบอกว่า resource ที่ต้องการนั้นไม่มีอยู่แล้ว หรืออาจจะย้ายไปที่อื่น
+
+5xx (หมวด Server error)
+
+    500 Internal Server Error บ่งบอกว่าการ request นั้นถูกต้อง แต่ server มีความสับสนและจะบริการด้วยเงือนไขที่คาดการไม่ได้
+    503 Service Unavailable บ่งบอกว่า server ใช้การไม่ได้ หรือไม่ว่างที่จะรับและดำเนินการ request โดยส่วนใหญ่แล้ว server อยู่ในช่วงบำรุงรักษา

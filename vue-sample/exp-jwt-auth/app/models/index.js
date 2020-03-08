@@ -79,6 +79,7 @@ db.user.belongsToMany(db.role, {
 // กำหนด constant parameter ไว้ check role in verifySignUp.js
 db.ROLES = ['user', 'admin', 'moderator'];
 
+// PRODUCT
 db.product = require('../models/product.model.js')(sequelize, Sequelize);
 db.productCategory = require('../models/productCategory.model.js')(sequelize, Sequelize);
 db.productSubcategory = require('../models/productSubcategory.model.js')(sequelize, Sequelize);
@@ -97,5 +98,12 @@ db.product.belongsTo(db.productCategory);
 db.productSubclass.belongsTo(db.productClass);
 db.productClass.belongsTo(db.productSubcategory);
 db.productSubcategory.belongsTo(db.productCategory);
+
+// ITEM
+db.item = require('../models/item.model.js')(sequelize, Sequelize);
+db.itemCategory = require('../models/itemCategory.model.js')(sequelize, Sequelize);
+
+db.item.belongsTo(db.itemCategory);
+db.itemCategory.hasMany(db.item);
 
 module.exports = db;
