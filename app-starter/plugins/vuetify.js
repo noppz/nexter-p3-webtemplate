@@ -10,14 +10,14 @@ export default (ctx) => {
     theme: {
       themes: {
         light: {
-          primary: '#4caf50',
-          secondary: '#4caf50',
+          primary: '#1976D2',
+          secondary: '#424242',
           tertiary: '#495057',
           accent: '#82B1FF',
-          error: '#f55a4e',
-          info: '#00d3ee',
-          success: '#5cb860',
-          warning: '#ffa21a'
+          success: '#4CAF50',
+          error: '#FF5252',
+          warning: '#FFC107',
+          info: '#2196F3'
         }
       }
     },

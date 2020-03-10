@@ -146,7 +146,7 @@
                 <b>Vuetify Material Dashboard</b>
                 - a beautiful freebie for every web developer.
               </div>
-              <v-btn icon @click="snackbar = false">
+              <v-btn icon dark @click="snackbar = false">
                 <v-icon>
                   mdi-close-circle
                 </v-icon>

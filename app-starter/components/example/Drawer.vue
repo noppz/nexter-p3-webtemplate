@@ -53,9 +53,9 @@
         </template>
 
         <v-list-item v-for="(admin, i) in admins" :key="i" link>
-          <v-list-item-title class="caption" v-text="admin[0]"></v-list-item-title>
+          <v-list-item-title class="caption">{{ admin[0] }}</v-list-item-title>
           <v-list-item-icon>
-            <v-icon size="medium" v-text="admin[1]"></v-icon>
+            <v-icon size="medium">{{ admin[1] }}</v-icon>
           </v-list-item-icon>
         </v-list-item>
       </v-list-group>
@@ -67,9 +67,9 @@
           </v-list-item-content>
         </template>
         <v-list-item v-for="(crud, i) in cruds" :key="i">
-          <v-list-item-title class="caption" v-text="crud[0]"></v-list-item-title>
+          <v-list-item-title class="caption">{{ crud[0] }}</v-list-item-title>
           <v-list-item-action>
-            <v-icon size="medium" v-text="crud[1]"></v-icon>
+            <v-icon size="medium">{{ crud[1] }}</v-icon>
           </v-list-item-action>
         </v-list-item>
       </v-list-group>
@@ -136,14 +136,14 @@ export default {
       }
     ],
     admins: [
-      ['Management', 'people_outline'],
-      ['Settings', 'settings']
+      ['Management', 'mdi-account-box-outline'],
+      ['Settings', 'mdi-cog']
     ],
     cruds: [
-      ['Create', 'add'],
-      ['Read', 'insert_drive_file'],
-      ['Update', 'update'],
-      ['Delete', 'delete']
+      ['Create', 'mdi-plus'],
+      ['Read', 'mdi-book-open-outline'],
+      ['Update', 'mdi-update'],
+      ['Delete', 'mdi-delete']
     ]
   }),
   computed: {
