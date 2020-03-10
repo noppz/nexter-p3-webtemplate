@@ -23,6 +23,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^17.0.0",
     "@ckeditor/ckeditor5-vue": "^1.0.1",
+    "@mdi/font": "^5.0.45",
     "@nuxtjs/auth": "^4.8.5",
     "@nuxtjs/axios": "^5.9.5",
     "@nuxtjs/dotenv": "^1.4.0",

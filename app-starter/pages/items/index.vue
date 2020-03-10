@@ -152,14 +152,25 @@
             >
               <!-- Custom Column -->
               <template v-slot:item.status="{ item }">
+                <!--
                 <v-chip :color="getColor(item.status)" small dark>
                   {{ getText(item.status) }}
                 </v-chip>
+                -->
+                <input type="hidden" :value="item" />
+                <v-switch inset></v-switch>
               </template>
               <template v-slot:item.source="{ item }">
+                <!--
                 <v-chip :color="getColor(item.source)" small dark>
                   {{ getText(item.source) }}
                 </v-chip>
+                -->
+                <input type="hidden" :value="item" />
+                <v-radio-group>
+                  <v-radio label="active" value="1"></v-radio>
+                  <v-radio label="inactive" value="0"></v-radio>
+                </v-radio-group>
               </template>
               <template v-slot:item.action="{ item }">
                 <v-btn icon @click="editItem(item)">
@@ -230,6 +241,8 @@
 </template>
 
 <script>
+// Utilities
+import { mapActions } from 'vuex'
 import desserts from '@/sample_data/desserts.json'
 const breadcrumbInfo = [
   {
@@ -312,6 +325,12 @@ export default {
     this.initialize()
   },
   methods: {
+    ...mapActions({
+      setSnackbarSuccess: 'app/setSnackbarSuccess',
+      setSnackbarError: 'app/setSnackbarError',
+      setSnackbarWarning: 'app/setSnackbarWarning',
+      setSnackbarInfo: 'app/setSnackbarInfo'
+    }),
     initialize() {
       this.tableData = sampleData
       // console.log(JSON.stringify(this.tableData))
@@ -343,6 +362,7 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       }, 300)
+      this.setSnackbarInfo('HELLO WORLD!!!')
     },
     save() {
       if (this.editedIndex > -1) {
@@ -350,17 +370,24 @@ export default {
       } else {
         this.tableData.push(this.editedItem)
       }
-      this.close()
+      this.dialog = false
+      setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      }, 300)
+      this.setSnackbarSuccess('SAVE SUCCESS!!!')
     },
     close2() {
       this.deleteItemIndex = null
       this.dialog2 = false
+      this.setSnackbarWarning('SNACKBAR IS CLOSING!!!')
     },
     confirmDelete() {
       const index = this.deleteItemIndex
       this.tableData.splice(index, 1)
       this.deleteItemIndex = null
       this.dialog2 = false
+      this.setSnackbarError('DELETE FAILURE!!!')
     },
     getColor(val) {
       if (val === 0) return 'red'

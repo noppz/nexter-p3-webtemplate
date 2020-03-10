@@ -61,7 +61,8 @@ export default {
     '~/plugins/components.js',
     { src: '~/plugins/ckeditor.js', mode: 'client' },
     '~/plugins/auth.js',
-    '~/plugins/i18n.js'
+    '~/plugins/i18n.js',
+    '~/plugins/vuetify.js'
   ],
   /*
    ** Nuxt.js dev-modules

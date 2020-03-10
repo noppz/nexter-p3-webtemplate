@@ -37,7 +37,8 @@
         :key="i"
         :to="link.to"
         exact
-        active-class="primary white--text"
+        :active-class="color"
+        dark
       >
         <v-list-item-action>
           <v-icon>{{ link.icon }}</v-icon>

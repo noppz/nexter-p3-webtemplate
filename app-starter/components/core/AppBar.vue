@@ -54,7 +54,7 @@
                   &gt;99
                 </template>
                 <v-icon color="tertiary">
-                  mdi-file-document-box
+                  mdi-text-box-multiple
                 </v-icon>
               </v-badge>
             </v-btn>

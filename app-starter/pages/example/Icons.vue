@@ -52,13 +52,13 @@
               <v-btn
                 large
                 color="success"
-                href="https://cdn.materialdesignicons.com/4.9.95/#icons"
+                href="https://cdn.materialdesignicons.com/5.0.45/"
                 target="_blank"
               >
                 <v-icon left>
                   mdi-material-design
                 </v-icon>
-                <span>See icons name version 4.9.95</span>
+                <span>See icons name version 5.0.45</span>
               </v-btn>
             </v-col>
           </v-row>

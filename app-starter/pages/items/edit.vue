@@ -108,7 +108,7 @@ export default {
       this.$router.push('/items')
     },
     save() {
-      //
+      this.$router.push('/items')
     }
   }
 }

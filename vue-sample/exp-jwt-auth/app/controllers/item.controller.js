@@ -16,10 +16,12 @@ exports.create = (req, res) => {
   res.status(201).send('CREATE Item');
 };
 
+/*
 exports.upsert = (req, res) => {
   // Model.upsert();
   res.status(200).send('UPSERT Item');
 };
+*/
 
 exports.update = (req, res) => {
    // Model.update();
