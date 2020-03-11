@@ -18,29 +18,29 @@
     "popper.js": "^1.16.1",
     "vee-validate": "^2.2.15",
     "vue": "^2.6.11",
-    "vue-router": "^3.1.5",
-    "vuex": "^3.1.2"
+    "vue-router": "^3.1.6",
+    "vuex": "^3.1.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.2.0",
-    "@vue/cli-plugin-eslint": "~4.2.0",
-    "@vue/cli-plugin-router": "~4.2.0",
-    "@vue/cli-plugin-vuex": "~4.2.0",
-    "@vue/cli-service": "~4.2.0",
-    "babel-eslint": "^10.0.3",
+    "@vue/cli-plugin-babel": "^4.2.3",
+    "@vue/cli-plugin-eslint": "^4.2.3",
+    "@vue/cli-plugin-router": "^4.2.3",
+    "@vue/cli-plugin-vuex": "^4.2.3",
+    "@vue/cli-service": "^4.2.3",
+    "babel-eslint": "^10.1.0",
     "babel-preset-env": "^1.7.0",
     "css-loader": "^3.4.2",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.1.2",
+    "eslint-plugin-vue": "^6.2.2",
     "lint-staged": "^9.5.0",
     "node-sass": "^4.13.1",
-    "sass": "^1.19.0",
+    "sass": "^1.26.2",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.6.11",
-    "webpack": "^4.41.6"
+    "webpack": "^4.42.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

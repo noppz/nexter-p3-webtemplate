@@ -132,7 +132,7 @@
               :headers="tableHeader"
               :items="tableData"
               :page.sync="page"
-              :items-per-page="itemsPerPage.value"
+              :items-per-page="itemsPerPage"
               :search="search"
               :expanded.sync="expanded"
               item-key="name"
@@ -172,9 +172,6 @@
                 <v-btn icon @click="deleteItem(item)">
                   <v-icon small>mdi-delete</v-icon>
                 </v-btn>
-                <v-btn icon color="warning" @click="updateItem(item)">
-                  <v-icon small>mdi-pencil-box-outline</v-icon>
-                </v-btn>
               </template>
               <!-- Show Expand -->
               <template v-slot:expanded-item="{ headers, item }">
@@ -205,7 +202,7 @@
             <div class="d-flex">
               <v-select
                 v-model="itemsPerPage"
-                :hint="`display ${itemsPerPage.label}`"
+                :hint="`display ${itemsPerPage}`"
                 :items="selectCount"
                 item-text="label"
                 item-value="value"
@@ -253,12 +250,6 @@ const tableHeaders = [
     value: 'name',
     align: 'left'
   },
-  /*
-  { text: 'Calories', value: 'calories', align: 'right' },
-  { text: 'Fat (g)', value: 'fat', align: 'right' },
-  { text: 'Carbs (g)', value: 'carbs', align: 'right' },
-  { text: 'Protein (g)', value: 'protein', align: 'right' },
-  */
   { text: 'Source', value: 'source', sortable: false, align: 'center' },
   { text: 'Status', value: 'status', sortable: false, align: 'center' },
   { text: 'Actions', value: 'action', sortable: false, align: 'center' },
@@ -288,14 +279,10 @@ export default {
       dialog: false,
       dialog2: false,
       widthSize: '480px',
-      dropdown_icon: [
-        { text: 'Quick Add', callback: () => this.createQuickItem() },
-        { text: 'New Item', callback: () => this.createItem() }
-      ],
       search: '',
       page: 1,
       pageCount: 0,
-      itemsPerPage: { label: '10', value: 10 },
+      itemsPerPage: 10,
       selectCount: countItems,
       selected: [],
       expanded: [],
@@ -330,13 +317,10 @@ export default {
       this.itemsPerPage = item
     },
     createItem() {
-      this.$router.push('/items/edit')
+      this.$router.push('/items2/edit')
     },
     createQuickItem() {
       this.dialog = true
-    },
-    updateItem(item) {
-      this.$router.push('/items/edit')
     },
     editItem(item) {
       this.editedIndex = this.tableData.indexOf(item)
@@ -353,32 +337,32 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       }, 300)
-      this.setSnackbarInfo('HELLO WORLD!!!')
+      // this.setSnackbarInfo('HELLO WORLD!!!')
     },
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.tableData[this.editedIndex], this.editedItem)
       } else {
-        this.tableData.push(this.editedItem)
+        // this.tableData.push(this.editedItem)
       }
       this.dialog = false
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       }, 300)
-      this.setSnackbarSuccess('SAVE SUCCESS!!!')
+      // this.setSnackbarSuccess('SAVE SUCCESS!!!')
     },
     close2() {
       this.deleteItemIndex = null
       this.dialog2 = false
-      this.setSnackbarWarning('SNACKBAR IS CLOSING!!!')
+      // this.setSnackbarWarning('SNACKBAR IS CLOSING!!!')
     },
     confirmDelete() {
       const index = this.deleteItemIndex
       this.tableData.splice(index, 1)
       this.deleteItemIndex = null
       this.dialog2 = false
-      this.setSnackbarError('DELETE FAILURE!!!')
+      // this.setSnackbarError('DELETE FAILURE!!!')
     },
     getColor(val) {
       if (val === 0) return 'red'

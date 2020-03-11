@@ -60,13 +60,13 @@ const breadcrumbInfo = [
   {
     text: 'Items',
     disabled: false,
-    to: '/items',
+    to: '/items2',
     exact: true
   },
   {
     text: 'Items Edit',
     disabled: true,
-    to: '/items/edit',
+    to: '/items2/edit',
     exact: true
   }
 ]
