@@ -23,7 +23,7 @@
                   class="text-inherit ml-4 w-10"
                   style="width:180px;"
                   color="warning"
-                  to="/items/edit"
+                  to="/items2/edit"
                   rounded
                 >
                   Create Item
@@ -130,7 +130,7 @@
             <v-data-table
               v-model="selected"
               :headers="tableHeader"
-              :items="tableData"
+              :items="list"
               :page.sync="page"
               :items-per-page="itemsPerPage"
               :search="search"
@@ -230,8 +230,7 @@
 
 <script>
 // Utilities
-import { mapActions } from 'vuex'
-import desserts from '@/sample_data/desserts.json'
+import { mapActions, mapGetters } from 'vuex'
 const breadcrumbInfo = [
   {
     text: 'Items',
@@ -269,7 +268,7 @@ const countItems = [
   { label: '20', value: 20 },
   { label: '50', value: 50 }
 ]
-const sampleData = desserts.data
+// const sampleData = desserts.data
 
 export default {
   data() {
@@ -287,7 +286,6 @@ export default {
       selected: [],
       expanded: [],
       tableHeader: tableHeaders,
-      tableData: [],
       editedIndex: -1,
       editedItem: objectItem,
       defaultItem: objectItem,
@@ -295,6 +293,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({ list: 'items2/list' }),
     formTitle() {
       return this.editedIndex === -1 ? 'Create Item' : 'Update Item'
     }
@@ -307,11 +306,11 @@ export default {
       setSnackbarSuccess: 'app/setSnackbarSuccess',
       setSnackbarError: 'app/setSnackbarError',
       setSnackbarWarning: 'app/setSnackbarWarning',
-      setSnackbarInfo: 'app/setSnackbarInfo'
+      setSnackbarInfo: 'app/setSnackbarInfo',
+      initList: 'items2/initList'
     }),
     initialize() {
-      this.tableData = sampleData
-      // console.log(JSON.stringify(this.tableData))
+      this.initList()
     },
     setSelectedCount(item) {
       this.itemsPerPage = item
@@ -323,12 +322,12 @@ export default {
       this.dialog = true
     },
     editItem(item) {
-      this.editedIndex = this.tableData.indexOf(item)
+      this.editedIndex = this.list.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
     deleteItem(item) {
-      this.deleteItemIndex = this.tableData.indexOf(item)
+      // this.deleteItemIndex = this.list.indexOf(item)
       this.dialog2 = true
     },
     close() {
@@ -341,9 +340,9 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.tableData[this.editedIndex], this.editedItem)
+        // Object.assign(this.list[this.editedIndex], this.editedItem)
       } else {
-        // this.tableData.push(this.editedItem)
+        // this.list.push(this.editedItem)
       }
       this.dialog = false
       setTimeout(() => {
@@ -353,14 +352,14 @@ export default {
       // this.setSnackbarSuccess('SAVE SUCCESS!!!')
     },
     close2() {
-      this.deleteItemIndex = null
+      // this.deleteItemIndex = null
       this.dialog2 = false
       // this.setSnackbarWarning('SNACKBAR IS CLOSING!!!')
     },
     confirmDelete() {
-      const index = this.deleteItemIndex
-      this.tableData.splice(index, 1)
-      this.deleteItemIndex = null
+      // const index = this.deleteItemIndex
+      // this.list.splice(index, 1)
+      // this.deleteItemIndex = null
       this.dialog2 = false
       // this.setSnackbarError('DELETE FAILURE!!!')
     },

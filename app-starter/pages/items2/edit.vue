@@ -101,10 +101,10 @@ export default {
   },
   methods: {
     cancel() {
-      this.$router.push('/items')
+      this.$router.push('/items2')
     },
     save() {
-      this.$router.push('/items')
+      this.$router.push('/items2')
     }
   }
 }

@@ -1,8 +1,8 @@
 export default {
-  getList(state) {
+  list(state) {
     return state.list
   },
-  getItem(state) {
+  item(state) {
     return state.item
   }
 }
