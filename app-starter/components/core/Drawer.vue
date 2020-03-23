@@ -83,6 +83,11 @@ export default {
         text: 'Items'
       },
       {
+        to: '/items2',
+        icon: 'mdi-view-dashboard',
+        text: 'Items2'
+      },
+      {
         to: '/products',
         icon: 'mdi-view-dashboard',
         text: 'Products'
