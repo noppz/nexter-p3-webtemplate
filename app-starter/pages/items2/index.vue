@@ -29,7 +29,7 @@
                   Create Item
                 </v-btn>
                 <!-- Start Edit Dialog -->
-                <v-dialog v-model="dialog" :max-width="widthSize">
+                <v-dialog v-model="dialog" persistent :max-width="widthSize">
                   <v-card>
                     <v-card-title>
                       <span class="headline">{{ formTitle }}</span>
@@ -99,7 +99,7 @@
                 </v-dialog>
                 <!-- END Edit DIALOG -->
                 <!-- START DELETE DIALOG -->
-                <v-dialog v-model="dialog2" :max-width="widthSize">
+                <v-dialog v-model="dialog2" persistent :max-width="widthSize">
                   <v-card>
                     <v-card-title>
                       <span class="headline">Delete Item</span>

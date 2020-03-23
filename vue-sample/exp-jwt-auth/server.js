@@ -23,7 +23,7 @@ const Role = db.role;
 // const User = db.user;
 // const UserRole = db.userRole;
 // const Product = db.product;
-const itemCategory = db.itemCategory;
+const ItemCategory = db.itemCategory;
 
 // IF force: true Existing Table will drop and resync at everytime starting server
 // ELSE no action
@@ -64,7 +64,7 @@ let initial = () => {
     });
   */
 
-  itemCategory.bulkCreate([
+  ItemCategory.bulkCreate([
     { name: 'Baby Foods' },
     { name: 'Baked Products' },
     { name: 'Beef Products' },
