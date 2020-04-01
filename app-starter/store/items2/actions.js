@@ -1,16 +1,37 @@
 export default {
-  async initList({ commit }) {
+  async getList({ commit }) {
     await this.$axios.get(`/v1/items`).then((res) => {
-      console.log(res.data)
       if (res.status === 200) {
         commit('SET_LIST', res.data)
       }
     })
   },
-  setList({ commit }, list) {
-    commit('SET_LIST', list)
+  async getItem({ commit }, index) {
+    await this.$axios.get(`/v1/items/` + index).then((res) => {
+      if (res.status === 200) {
+        commit('SET_ITEM', res.data)
+      }
+    })
   },
-  setItem({ commit }, item) {
-    commit('SET_ITEM', item)
+  async createItem({ commit }, payload) {
+    await this.$axios.post(`/v1/items`, payload).then((res) => {
+      if (res.status === 201) {
+        //
+      }
+    })
+  },
+  async updateItem({ commit }, payload) {
+    await this.$axios.patch(`/v1/items/` + payload.id, payload).then((res) => {
+      if (res.status === 200) {
+        //
+      }
+    })
+  },
+  async deleteItem({ commit }, index) {
+    await this.$axios.delete(`/v1/items/` + index).then((res) => {
+      if (res.status === 200) {
+        //
+      }
+    })
   }
 }

@@ -172,6 +172,9 @@
                 <v-btn icon @click="deleteItem(item)">
                   <v-icon small>mdi-delete</v-icon>
                 </v-btn>
+                <v-btn icon color="warning" @click="updateItem(item)">
+                  <v-icon small>mdi-pencil-box-outline</v-icon>
+                </v-btn>
               </template>
               <!-- Show Expand -->
               <template v-slot:expanded-item="{ headers, item }">
@@ -307,10 +310,10 @@ export default {
       setSnackbarError: 'app/setSnackbarError',
       setSnackbarWarning: 'app/setSnackbarWarning',
       setSnackbarInfo: 'app/setSnackbarInfo',
-      initList: 'items2/initList'
+      getList: 'items2/getList'
     }),
     initialize() {
-      this.initList()
+      this.getList()
     },
     setSelectedCount(item) {
       this.itemsPerPage = item
@@ -320,6 +323,9 @@ export default {
     },
     createQuickItem() {
       this.dialog = true
+    },
+    updateItem(item) {
+      this.$router.push('/items2/edit/' + item.id)
     },
     editItem(item) {
       this.editedIndex = this.list.indexOf(item)

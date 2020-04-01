@@ -24,26 +24,51 @@ exports.search = (req, res) => {
 
 exports.seek = (req, res) => {
   // Model.findOrCreate();
-  // res.status(200).send('SEARCH Item');
-  // res.status(201).send('CREATE Item');
-  res.status(200).send('SEARCH/CREATE Item');
+  res.status(200).send('SEARCH/CREATED Item');
 };
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   // Model.create();
-  res.status(201).send('CREATE Item');
+  console.log(req.body);   
+  await Item.create({
+    name: req.body.name,
+    calories: req.body.calories,
+    carbs: req.body.carbs,
+    fat: req.body.fat,
+    protein: req.body.protein,
+    status: req.body.status,
+    source: req.body.source,
+    item_category_id: req.body.item_category_id
+  })
+  .then((createdItem) => {
+    if (createdItem === 1) {
+      res.status(201).send('CREATED Item');  
+    } else {
+      res.status(404).json({message: 'CAN\'T INSERT ITEM'})
+    }
+  })
+  .catch((error) => {
+    // Error 😨
+    if (error.response) {
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      console.log(error.request);
+    } else {
+      console.log('Error', error.message);
+    }
+  });
 };
 
 exports.upsert = (req, res) => {
   // Model.upsert();
-  // res.status(200).send('UPDATE Item');
-  // res.status(201).send('CREATE Item');
-  res.status(200).send('CREATE/UPDATE Item');
+  res.status(200).send('CREATED/UPDATED Item');
 };
 
 exports.update = (req, res) => {
   // Model.update();
-  res.status(200).send('UPDATE Item id: ' + req.params.id);
+  res.status(200).send('UPDATED Item id: ' + req.params.id);
 };
 
 exports.delete = async (req, res) => {
@@ -55,7 +80,7 @@ exports.delete = async (req, res) => {
   })
   .then((deletedItem) => {
     if (deletedItem === 1) {
-      res.status(200).json({message: 'Deleted successfully'});       
+      res.status(200).json({message: 'DELETED successfully'});       
       // res.status(204) จะไม่มี content ไปกับ response
       // res.status(200).send('DELETE Item id: ' + req.params.id);
     } else {
