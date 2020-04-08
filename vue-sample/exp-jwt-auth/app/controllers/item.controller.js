@@ -19,18 +19,17 @@ exports.find = (req, res) => {
 exports.search = (req, res) => {
   // Model.findAll();
   // Model.findAndCountAll();
-  res.status(200).send('SEARCH Item');
+  res.status(200).send('FOUND Item success');
 };
 
 exports.seek = (req, res) => {
   // Model.findOrCreate();
-  res.status(200).send('SEARCH/CREATED Item');
+  res.status(200).send('FOUND/CREATED Item success');
 };
 
 exports.create = async (req, res) => {
   // Model.create();
-  console.log(req.body);   
-  await Item.create({
+  let obj = {
     name: req.body.name,
     calories: req.body.calories,
     carbs: req.body.carbs,
@@ -39,36 +38,66 @@ exports.create = async (req, res) => {
     status: req.body.status,
     source: req.body.source,
     item_category_id: req.body.item_category_id
-  })
-  .then((createdItem) => {
-    if (createdItem === 1) {
-      res.status(201).send('CREATED Item');  
-    } else {
-      res.status(404).json({message: 'CAN\'T INSERT ITEM'})
-    }
-  })
-  .catch((error) => {
-    // Error 😨
-    if (error.response) {
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
-    } else if (error.request) {
-      console.log(error.request);
-    } else {
-      console.log('Error', error.message);
-    }
-  });
+  };
+
+  await Item.create(obj)
+    .then((createdItem) => {
+      if (createdItem) {
+        res.status(201).send({ message: 'CREATED item success' });
+      } else {
+        res.status(404).json({ message: 'CREATED item failed' })
+      }
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log('Error', error.message);
+      }
+    });
 };
 
 exports.upsert = (req, res) => {
   // Model.upsert();
-  res.status(200).send('CREATED/UPDATED Item');
+  res.status(200).send('CREATED/UPDATED Item success');
 };
 
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
   // Model.update();
-  res.status(200).send('UPDATED Item id: ' + req.params.id);
+  let obj = {
+    name: req.body.name,
+    calories: req.body.calories,
+    carbs: req.body.carbs,
+    fat: req.body.fat,
+    protein: req.body.protein,
+    status: req.body.status,
+    source: req.body.source,
+    item_category_id: req.body.item_category_id
+  };
+
+  await Item.update(obj, { where: { id: req.params.id } })
+    .then((updatedItem) => {
+      if (updatedItem) {
+        res.status(200).send({ message: 'UPDATED Item id: ' + req.params.id + ' success' });
+      } else {
+        res.status(404).json({ message: 'UPDATED Item id: ' + req.params.id + ' failed' })
+      }
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log('Error', error.message);
+      }
+    });
 };
 
 exports.delete = async (req, res) => {
@@ -78,38 +107,38 @@ exports.delete = async (req, res) => {
       id: req.params.id
     }
   })
-  .then((deletedItem) => {
-    if (deletedItem === 1) {
-      res.status(200).json({message: 'DELETED successfully'});       
-      // res.status(204) จะไม่มี content ไปกับ response
-      // res.status(200).send('DELETE Item id: ' + req.params.id);
-    } else {
-      res.status(404).json({message: 'Record not found'})
-    }
-  })
-  .catch((error) => {
-    // Error 😨
-    if (error.response) {
-      /*
-      * The request was made and the server responded with a
-      * status code that falls out of the range of 2xx
-      */
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
-    } else if (error.request) {
-      /*
-      * The request was made but no response was received, `error.request`
-      * is an instance of XMLHttpRequest in the browser and an instance
-      * of http.ClientRequest in Node.js
-      */
-      console.log(error.request);
-    } else {
-      // Something happened in setting up the request and triggered an Error
-      console.log('Error', error.message);
-    }
+    .then((deletedItem) => {
+      if (deletedItem) {
+        res.status(200).json({ message: 'DELETED item success' });
+        // res.status(204) จะไม่มี content ไปกับ response
+        // res.status(200).send('DELETE Item id: ' + req.params.id);
+      } else {
+        res.status(404).json({ message: 'DELETED item failed' })
+      }
+    })
+    .catch((error) => {
+      // Error 😨
+      if (error.response) {
+        /*
+        * The request was made and the server responded with a
+        * status code that falls out of the range of 2xx
+        */
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        /*
+        * The request was made but no response was received, `error.request`
+        * is an instance of XMLHttpRequest in the browser and an instance
+        * of http.ClientRequest in Node.js
+        */
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request and triggered an Error
+        console.log('Error', error.message);
+      }
       // console.log(error.config);
-  });
+    });
 };
 
 /*
@@ -139,12 +168,12 @@ exports.delete = async (req, res) => {
   AND ; (Semicolon)
   OR  , (Comma)
 
-  LHS bracket: 
+  LHS bracket:
   GET /items?price[gte]=10&status[ne]=active
-  
+
   * Easy to use for your users
   * Relatively simple to parse server side
-  * Relatively intuitive  
+  * Relatively intuitive
 
   RHS colon:
   GET /items?price=gte:10&price=ne:active
@@ -179,7 +208,7 @@ exports.delete = async (req, res) => {
   Retrieving specific fields (use a fields query parameter)
   GET /users?fields=first_name,last_name
 
-  let transaction;    
+  let transaction;
 
   try {
     // get transaction
@@ -200,5 +229,5 @@ exports.delete = async (req, res) => {
   } catch (err) {
     // Rollback transaction only if the transaction object is defined
     if (transaction) await transaction.rollback();
-  }  
+  }
 */
