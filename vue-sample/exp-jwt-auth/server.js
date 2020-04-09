@@ -28,9 +28,9 @@ const ItemCategory = db.itemCategory;
 // IF force: true Existing Table will drop and resync at everytime starting server
 // ELSE no action
 // DEFAULT force = true
-const forceDropResync = false;
+const forceDropResync = true;
 
-db.sequelize.sync({ 
+db.sequelize.sync({
   force: forceDropResync
 }).then(() => {
   // console.log('Drop and Resync Db'); 

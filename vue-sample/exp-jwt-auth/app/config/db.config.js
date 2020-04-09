@@ -3,6 +3,7 @@ module.exports = {
   USER: 'root',
   PASSWORD: 'qwerty',
   DB: 'test_jwt_auth',
+  PORT: 3306,
   dialect: 'mysql',
   pool: {
     max: 5,

@@ -7,6 +7,7 @@ const sequelize = new Sequelize(
   config.PASSWORD,
   {
     host: config.HOST,
+    port: config.PORT,
     dialect: config.dialect,
     // operatorsAliases: false, // [DEPRECATED] sequelize v5 not use
     pool: {
