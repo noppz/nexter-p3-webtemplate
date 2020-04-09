@@ -5,15 +5,11 @@
         <material-card color="blue">
           <template v-slot:header>
             <div class="px-3">
-              <div class="title font-weight-light mb-2">
-                Dashboard
-              </div>
+              <div class="title font-weight-light mb-2">Dashboard</div>
 
               <div class="category">
                 Handcrafted by us with
-                <v-icon size="17">
-                  mdi-heart
-                </v-icon>
+                <v-icon size="17">mdi-heart</v-icon>
               </div>
             </div>
           </template>
@@ -34,9 +30,11 @@
 <script>
 export default {
   name: 'Dashboard',
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      //
+    }
+  },
   methods: {
     //
   }
