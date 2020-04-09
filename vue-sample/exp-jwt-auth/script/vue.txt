@@ -1,0 +1,127 @@
+===================================
+[Installation]
+===================================
+
+npm install -g @vue/cli
+vue --version
+
+vue create hello-world
+
+[Manage Project with GUI]
+vue ui
+
+===================================
+[References]
+===================================
+Vue Official Site
+https://vuejs.org/
+
+Vue Style Guide (for Coding)
+https://vuejs.org/v2/style-guide/
+
+Vue Coding Pattern
+https://learn-vuejs.github.io/vue-patterns/
+
+Vue Code Example
+https://vuejs.org/v2/examples/
+
+Vue API
+https://vuejs.org/v2/api/
+
+===================================
+[Tooling]
+===================================
+Devtools
+https://github.com/vuejs/vue-devtools#vue-devtools
+
+Vue CLI
+https://cli.vuejs.org/
+
+Vue Loader
+https://vue-loader.vuejs.org/
+
+Vue Design System
+https://vueds.com/
+
+===================================
+[Core Libraries] 
+===================================
+Vue Router
+https://router.vuejs.org/
+
+multiple routes
+https://stackoverflow.com/questions/46590760/vue-js-2-multiple-routing-files
+
+Vuex
+https://vuex.vuejs.org/
+
+Vue Server Renderer
+https://ssr.vuejs.org/
+
+VeeValidate
+https://logaretm.github.io/vee-validate/
+
+Vue i18n
+https://kazupon.github.io/vue-i18n/introduction.html
+
+Vue Meta
+https://vue-meta.nuxtjs.org/
+
+===================================
+[Framework for Vue SSR] 
+===================================
+Nuxtjs
+https://nuxtjs.org/
+https://egghead.io/lessons/vue-build-vue-js-apps-with-the-vue-cli-and-nuxt-js
+
+===================================
+[Vue Admin Template] 
+===================================
+https://colorlib.com/wp/free-vuejs-admin-template/
+
+https://panjiachen.github.io/vue-element-admin-site/guide/essentials/layout.html#app-main
+
+Core-UI
+https://coreui.io/vue/
+
+Creative Tim
+https://www.creative-tim.com/templates/vuejs-dashboard
+
+===================================
+[jwt auth] 
+===================================
+https://bezkoder.com/node-express-vue-jwt-auth/
+https://bezkoder.com/node-js-jwt-authentication-mysql/
+https://bezkoder.com/jwt-vue-vuex-authentication/
+
+===================================
+[Dynamic Layouts] 
+===================================
+https://vueschool.io/articles/vuejs-tutorials/structuring-vue-components/
+https://levelup.gitconnected.com/multiple-layouts-for-vue-spa-app-fafda6b2bfc7
+https://dev.to/lampewebdev/vuejs-pages-with-dynamic-layouts-problems-and-a-solution-4460
+https://markus.oberlehner.net/blog/dynamic-vue-layout-components/
+https://itnext.io/anyway-heres-how-to-create-a-multiple-layout-system-with-vue-and-vue-router-b379baa91a05
+
+https://www.telerik.com/blogs/10-good-practices-building-maintaining-large-vuejs-projects
+
+https://medium.com/@artdvp/note-%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%B6%E0%B8%81-workshop-%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87-website-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-node-js-vue-js-part-3-b58b0ec604b
+
+===================================
+[Nuxt Material Dashboard] 
+===================================
+https://github.com/creativetimofficial/vuetify-material-dashboard
+https://github.com/Rekryt/nuxt-vuetify-dashboard
+
+https://github.com/Geminii/nuxtjs-dashboard
+https://nuxtjs-dashboard.herokuapp.com/dashboard
+
+https://github.com/ansezz/vue-paper-dashboard-nuxtjs
+https://vue-paper-dashboard-nuxtjs.herokuapp.com/
+
+https://github.com/moeddami/nuxt-material-admin
+https://nuxt-material-admin.netlify.com/dashboard
+
+https://github.com/muhibbudins/nuxt-coreui
+https://nuxt-coreui.netlify.com/
+
